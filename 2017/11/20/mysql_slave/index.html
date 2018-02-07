@@ -29,7 +29,7 @@
     <!--Title-->
 
 
-<title>标签: spider | Zoie</title>
+<title>MySQL主从配置 | Zoie</title>
 
 
     <link rel="alternate" href="/atom.xml" title="Zoie" type="application/atom+xml">
@@ -120,43 +120,117 @@
     <section class="content-wrap">
         <div class="container">
             <div class="row">
-                <main class="col-md-8 main-content ">
-                    <h3> 
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="MySQL主从配置">
+            
+	            MySQL主从配置
+            
+        </h1>
+        <div class="post-meta">
     
-        spider 
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a href="/categories/数据库">
+            数据库
+        </a>
+    </span>
     
     
-</h3>
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+                
+                    <a href="/tags/MySQL" title='MySQL'>
+                        MySQL
+                    </a>
+                
+            
+        </span>
+    </span>
+    
 
-    <article class="post">
+    
         
-            <div class="post-media">
-                <a href="/2018/06/27/urllib_xpath_bs4/">
-                    <img class="img-ajax" src="/img/loading.gif"  data-src="/../images/spider.jpg"  alt="Python3 - 三种方式获取网页页面(urllib/xpath/bs4)"> 
-                </a>
-            </div>
-        
-        <div class="post-content">
-            <div class="post-head home-post-head">
-                <h1 class="post-title"> 
-                    <a href="/2018/06/27/urllib_xpath_bs4/">Python3 - 三种方式获取网页页面(urllib/xpath/bs4)</a>
-                </h1>
-                <div class="post-meta">  &bull;
-                    <time class="post-date" datetime="" title="">
-                        2018年06月26日
-                    </time>
-                </div>
-            </div>
-            <p class="brief">
-                
-                    1. urllib1.1 使用urllib进行编码和解码1234567891011from urllib import parse# 编码enstr = parse.urlencode(&amp;#12...
-                
-            </p> 
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2017/11/20</span>
+        </span>
+    
+</div>
+
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h3 id="1-部署环境"><a href="#1-部署环境" class="headerlink" title="1. 部署环境"></a>1. 部署环境</h3><p>​    主(master_mysql): 10.7.152.50<br>    从(slave_mysql): 10.7.152.51<br>    从(slave_mysql): 10.7.152.52 </p>
+<h3 id="2-安装mysql"><a href="#2-安装mysql" class="headerlink" title="2. 安装mysql"></a>2. 安装mysql</h3><p>​    主和从: yum install mysql-server </p>
+<h3 id="3-配置"><a href="#3-配置" class="headerlink" title="3. 配置"></a>3. 配置</h3><p>   3.1 主配置(master_mysql配置) </p>
+<p>   vim etcmy.cnf </p>
+<pre><code>server-id=200 #设置主服务 的ID 
+innodb_flush_log_at_trx_commit=2 
+#操作系统崩溃或者系统断电的情况下，上 秒钟所有事务数据才可能丢失 
+sync_binlog=1 #开启binlog 志同步功能
+log-bin=mysql-bin-200 #binlog日志文件名
+binlog-do-db=xxxx # 这个表示只同步某个库 (如果没有此项，表示同步所有的库)
+</code></pre><p> 3.2 配置完后，重启主库的mysql </p>
+<p> service mysqld restart<br> mysql -uroot -p ##登录mysql<br> mysql&gt;grant replication slave on <em>.</em> to ‘mark‘@’10.7.152.51’ identified by ‘123456’; # 授权给从数据库服务 10.7.152.51， 用户名mark，密码123456<br> mysql&gt;show master status ; ##查看主库的状态 </p>
+<p><img src="/../images/slave1.png" alt="1"></p>
+<p> mysql&gt;grant replication slave on <em>.</em> to ‘jack‘@’10.7.152.52’ identified by ‘123456’; # 授权给从数据库服务 10.7.152.52， 用户名jack，密码123456<br> mysql&gt;show master status ; ##查看主库的状态 </p>
+<p><img src="/../images/slave2.png" alt="2"></p>
+<p>3.3 配置从库服务器 </p>
+<p>3.3.1 配置10.7.152.51</p>
+<p>vim etcmy.cnf </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">server-id=201 innodb_flush_log_at_trx_commit=2 sync_binlog=1 log-bin=mysql-bin-201</span><br></pre></td></tr></table></figure>
+<p>3.3.2 配置10.7.152.52</p>
+<p>vim etcmy.cnf </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">server-id=202 innodb_flush_log_at_trx_commit=2 sync_binlog=1 log-bin=mysql-bin-202</span><br></pre></td></tr></table></figure>
+<p>注意：每一个从库服务器的server-id要不相同</p>
+<p>3.4 配置完后，重启从库的mysql service mysqld restart </p>
+<p>mysql -uroot -p<br>mysql&gt; change master to master_host=’10.7.152.50’,master_user=’mark’ ,master_password=’123456’, master_log_file=’mysql- bin-200.000001’,master_log_pos=1461; # 10.7.152.51 连接主库<br>.mysql&gt; change master to master_host=’10.7.152.50’,master_user=’jack’ ,master_password=’123456’, master_log_file=’mysql- bin-200.000001’,master_log_pos=1927; # 10.7.152.52 连接主库<br>mysql&gt; start slave; # 开启从库 (stop slave:关闭从库)<br>mysql&gt; show slave status; # Slave_IO_Running,Slave_SQL_Running 都为Yes的时候表示配置成功 </p>
+<p><img src="/../images/master.png" alt="3"></p>
+<h3 id="4-验证主从"><a href="#4-验证主从" class="headerlink" title="4. 验证主从"></a>4. 验证主从</h3><p>可以在主库上创建 个库，再在从库上刷新查看是否同步。</p>
+
+    </div>
+
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="https://zoie1996.github.io/" target="_blank">Zoie</a>
+            
         </div>
-    </article>
- 
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2017/12/13/Django_URL/" class="pre-post btn btn-default" title='Python3 - Django中url使用及参数获取'>
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">Python3 - Django中url使用及参数获取</span>
+        </a>
+    
+    
+        <a href="/2017/11/16/unittest/" class="next-post btn btn-default" title='Python3 - 单元测试'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">Python3 - 单元测试</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
 
 
+    <div id="comments">
+        
+   <p>评论系统未开启，无法评论！</p>
+
+    </div>
 
 
 
