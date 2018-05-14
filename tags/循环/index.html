@@ -29,7 +29,7 @@
     <!--Title-->
 
 
-<title>Shell常用命令 | Zoie</title>
+<title>标签: 循环 | Zoie</title>
 
 
     <link rel="alternate" href="/atom.xml" title="Zoie" type="application/atom+xml">
@@ -120,383 +120,42 @@
     <section class="content-wrap">
         <div class="container">
             <div class="row">
-                <main class="col-md-8 main-content m-post">
-                    <p id="process"></p>
-<article class="post">
-    <div class="post-head">
-        <h1 id="Shell常用命令">
-            
-	            Shell常用命令
-            
-        </h1>
-        <div class="post-meta">
+                <main class="col-md-8 main-content ">
+                    <h3> 
+    
+        循环 
     
     
-    <span class="categories-meta fa-wrap">
-        <i class="fa fa-folder-open-o"></i>
-        <a href="/categories/Linux">
-            Linux
-        </a>
-    </span>
-    
-    
-    <span class="fa-wrap">
-        <i class="fa fa-tags"></i>
-        <span class="tags-meta">
-            
-                
-                    <a href="/tags/Shell" title='Shell'>
-                        Shell
-                    </a>
-                
-            
-        </span>
-    </span>
-    
+</h3>
 
-    
+    <article class="post">
         
-        <span class="fa-wrap">
-            <i class="fa fa-clock-o"></i>
-            <span class="date-meta">2018/05/14</span>
-        </span>
-    
-</div>
+        <div class="post-content">
+            <div class="post-head home-post-head">
+                <h1 class="post-title"> 
+                    <a href="/2018/05/15/if_while/">Python3 - 分支/循环结构</a>
+                </h1>
+                <div class="post-meta">  &bull;
+                    <time class="post-date" datetime="" title="">
+                        2018年05月14日
+                    </time>
+                </div>
+            </div>
+            <p class="brief">
+                
+                    一、分支结构
+1. if结构
 
-            
-            
-    </div>
-    
-    <div class="post-body post-content">
-        <p>shell的基本常用命令                                                                                                                                                            </p>
-<h2 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h2><blockquote>
-<p><strong>常用操作</strong></p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>指令</th>
-<th>操作</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>pwd</td>
-<td>当前路径</td>
-</tr>
-<tr>
-<td>cd</td>
-<td>更改目录 不加参数 进入主目录</td>
-</tr>
-<tr>
-<td>ls</td>
-<td>当前目录内容</td>
-</tr>
-<tr>
-<td>ls -a</td>
-<td>查看隐藏文件</td>
-</tr>
-<tr>
-<td>ls -l</td>
-<td>文件详情</td>
-</tr>
-<tr>
-<td>ls -ld</td>
-<td>目录本身信息</td>
-</tr>
-<tr>
-<td>mkdir</td>
-<td>新建文件夹</td>
-</tr>
-<tr>
-<td>rm</td>
-<td>删除文件</td>
-</tr>
-<tr>
-<td>rm -rf dir/</td>
-<td>删除文件夹</td>
-</tr>
-<tr>
-<td>cp file1 file2</td>
-<td>复制文件</td>
-</tr>
-<tr>
-<td>cp -r dir1 dir2</td>
-<td>复制文件夹</td>
-</tr>
-<tr>
-<td>mv file ..</td>
-<td>移动文件到上一级</td>
-</tr>
-<tr>
-<td>mv file dir/</td>
-<td>移动到dir目录</td>
-</tr>
-<tr>
-<td>mv file1 file2</td>
-<td>替换文件</td>
-</tr>
-<tr>
-<td>mv dir1 dir2</td>
-<td>替换文件夹</td>
-</tr>
-<tr>
-<td>touch a.text</td>
-<td>创建文件</td>
-</tr>
-<tr>
-<td>&gt;a.text</td>
-<td>创建文件</td>
-</tr>
-<tr>
-<td>touch .file.text</td>
-<td>创建隐藏文件</td>
-</tr>
-<tr>
-<td>cat file</td>
-<td>查看文件</td>
-</tr>
-<tr>
-<td>less file</td>
-<td>查看文件</td>
-</tr>
-<tr>
-<td>file a.txt</td>
-<td>查看文件类型</td>
-</tr>
-<tr>
-<td>man xx</td>
-<td>打开xx指令的手册 /x 查找某参数 n 查找下一处</td>
-</tr>
-<tr>
-<td>table</td>
-<td>可以补全路径名</td>
-</tr>
-<tr>
-<td>echo</td>
-<td>打印</td>
-</tr>
-<tr>
-<td>date</td>
-<td>显示时间</td>
-</tr>
-<tr>
-<td>cal</td>
-<td>显示日历</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p><strong>解压缩</strong></p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>指令</th>
-<th>操作</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>unzip</td>
-<td>解压</td>
-</tr>
-<tr>
-<td>zip -r</td>
-<td>压缩 file.zip dir 压缩后的名称 压缩对象</td>
-</tr>
-<tr>
-<td>tar zxvf</td>
-<td>解压.tar.gz</td>
-</tr>
-<tr>
-<td>tar zcvf</td>
-<td>压缩文件</td>
-</tr>
-<tr>
-<td>tar jxvf</td>
-<td>解压tar.bz2</td>
-</tr>
-<tr>
-<td>tar jcvf</td>
-<td>解压tar.bz2</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p><strong>重定向</strong></p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>指令</th>
-<th>操作</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>丨</td>
-<td>管道线</td>
-</tr>
-<tr>
-<td>&lt;</td>
-<td>标准输入重定向</td>
-</tr>
-<tr>
-<td>&gt;</td>
-<td>把输出流保存到文件中 重定向前把文件清空</td>
-</tr>
-<tr>
-<td>&gt;&gt;</td>
-<td>把输出流保存到文件中 不清空文件</td>
-</tr>
-<tr>
-<td>cat file1 &gt;file</td>
-<td>把file1中的内容写入file中</td>
-</tr>
-<tr>
-<td>cat file1 &gt;&gt;file</td>
-<td>把file1中的内容写入file内容后</td>
-</tr>
-<tr>
-<td>ls shit 2 &gt;out.txt</td>
-<td>标准错误输出</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p><strong>权限</strong></p>
-</blockquote>
-<p>用户在自己的主目录有写权限，在其它目录没有。</p>
-<table>
-<thead>
-<tr>
-<th>指令</th>
-<th>操作</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>su -</td>
-<td>更改用户为root</td>
-</tr>
-<tr>
-<td>sudo</td>
-<td>超级用户</td>
-</tr>
-<tr>
-<td>chmod +x +r + w</td>
-<td>添加执行/读/写权限</td>
-</tr>
-<tr>
-<td>chmod 777</td>
-<td>添加全部权限</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p><strong>进程</strong></p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>指令</th>
-<th>操作</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>ps -[ef丨aux] \丨grep 应用名称</td>
-<td>查看进程</td>
-</tr>
-<tr>
-<td>kill [-9] pid</td>
-<td>结束某个程序</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p><strong>搜索</strong></p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>指令</th>
-<th>操作</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>find file -type f</td>
-<td>搜索文件</td>
-</tr>
-<tr>
-<td>find dir/ -type d</td>
-<td>搜索目录</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p><strong>概念</strong></p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>概念</th>
-<th>解释</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>绝对路径</td>
-<td>以 <code>/</code> 开头的路径</td>
-</tr>
-<tr>
-<td>相对路径</td>
-<td>相对于当前工作路径 ./当前工作目录 ../上一级目录</td>
-</tr>
-<tr>
-<td>通配符</td>
-<td>例如 <code>*</code></td>
-</tr>
-</tbody>
-</table>
-
-    </div>
-
-    <div class="post-footer">
-        <div>
-            
-                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">Zoie</a>
-            
+格式:  if 表达式:
+​               语句块
+ 执行流程:程序遇到if结构时,判断表达式的真假,如果为真,则执行语句块,否则结束if结构   ...
+                
+            </p> 
         </div>
-        <div>
-            
-        </div>
-    </div>
-</article>
-
-<div class="article-nav prev-next-wrap clearfix">
-    
-        <a href="/2018/05/15/print_cal/" class="pre-post btn btn-default" title='Python3 - 打印月历'>
-            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
-            <span class="hidden-xs">Python3 - 打印月历</span>
-        </a>
-    
-    
-</div>
+    </article>
+ 
 
 
-    <div id="comments">
-        
-	<!--PC和WAP自适应版-->
-<div id="SOHUCS"></div>
-<script type="text/javascript">
-	(function(){var appid='cyt8KmUC1';var conf='prod_855a68d3b3d91855360a6215672a505a';var width=window.innerWidth||document.documentElement.clientWidth;if(width<960){window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id='+appid+'&conf='+conf+'"><\/script>');}else{var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}
-	c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})});}})();
-</script>	
-
-    </div>
 
 
 
