@@ -1,0 +1,659 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="Zoie">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://zoie1996..github.io">
+    <!--SEO-->
+
+
+
+<meta name="keywords" content="IT,技术,博客,Python"/>
+
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+
+<title>Shell常用命令 | Zoie</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="Zoie" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css?rev=3.3.4">
+<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+</head>
+
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header"  style="background-image:url(http://7xpw2b.com1.z0.glb.clouddn.com/hexo-sinppet/img/banner2.jpg)"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='zoie'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                 <img src="/img/branding.png" alt="Snippet 博客主题" class="img-responsive center-block">
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>首页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/技术杂谈/"><i class="fa "></i>技术杂谈</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/生活随笔/"><i class="fa "></i>生活随笔</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Shell常用命令">
+            
+	            Shell常用命令
+            
+        </h1>
+        <div class="post-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a href="/categories/Python3基础">
+            Python3基础
+        </a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+                
+                    <a href="/tags/Mac" title='Mac'>
+                        Mac
+                    </a>
+                
+                    <a href="/tags/Pycharm快捷键" title='Pycharm快捷键'>
+                        Pycharm快捷键
+                    </a>
+                
+            
+        </span>
+    </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2018/05/14</span>
+        </span>
+    
+</div>
+
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="Mac下Python-IDE-PyCharm的基本快捷键和配置简介"><a href="#Mac下Python-IDE-PyCharm的基本快捷键和配置简介" class="headerlink" title="Mac下Python IDE PyCharm的基本快捷键和配置简介"></a>Mac下Python IDE PyCharm的基本快捷键和配置简介</h1><blockquote>
+<p><strong>Mac键盘符号和修饰键说明</strong></p>
+</blockquote>
+<ul>
+<li><code>⌘</code> Command</li>
+<li><code>⇧</code> Shift</li>
+<li><code>⌥</code> Option</li>
+<li><code>⌃</code> Control</li>
+<li><code>↩︎</code> Return/Enter</li>
+<li><code>⌫</code> Delete</li>
+<li><code>⌦</code> 向前删除键（Fn+Delete）</li>
+<li><code>↑</code> 上箭头</li>
+<li><code>↓</code> 下箭头</li>
+<li><code>←</code> 左箭头</li>
+<li><code>→</code> 右箭头</li>
+<li><code>⇞</code> Page Up（Fn+↑）</li>
+<li><code>⇟</code> Page Down（Fn+↓）</li>
+<li><code>Home</code> Fn + ←</li>
+<li><code>End</code> Fn + →</li>
+<li><code>⇥</code> 右制表符（Tab键）</li>
+<li><code>⇤</code> 左制表符（Shift+Tab）</li>
+<li><code>⎋</code> Escape (Esc)</li>
+</ul>
+<blockquote>
+<p><strong>Editing（编辑）</strong></p>
+</blockquote>
+<ul>
+<li><code>⌃Space</code> 基本的代码补全（补全任何类、方法、变量）</li>
+<li><code>⌃⇧Space</code> 智能代码补全（过滤器方法列表和变量的预期类型）</li>
+<li><code>⌘⇧↩</code> 自动结束代码，行末自动添加分号</li>
+<li><code>⌘P</code> 显示方法的参数信息</li>
+<li><code>⌃J, Mid. button click</code> 快速查看文档</li>
+<li><code>⇧F1</code> 查看外部文档（在某些代码上会触发打开浏览器显示相关文档）</li>
+<li><code>⌘+鼠标放在代码上</code> 显示代码简要信息</li>
+<li><code>⌘F1</code> 在错误或警告处显示具体描述信息</li>
+<li><code>⌘N, ⌃↩, ⌃N</code> 生成代码（getter、setter、构造函数、hashCode/equals,toString）</li>
+<li><code>⌃O</code> 覆盖方法（重写父类方法）</li>
+<li><code>⌃I</code> 实现方法（实现接口中的方法）</li>
+<li><code>⌘⌥T</code> 包围代码（使用if..else, try..catch, for, synchronized等包围选中的代码）</li>
+<li><code>⌘/</code> 注释/取消注释与行注释</li>
+<li><code>⌘⌥/</code> 注释/取消注释与块注释</li>
+<li><code>⌥↑</code> 连续选中代码块</li>
+<li><code>⌥↓</code> 减少当前选中的代码块</li>
+<li><code>⌃⇧Q</code> 显示上下文信息</li>
+<li><code>⌥↩</code> 显示意向动作和快速修复代码</li>
+<li><code>⌘⌥L</code> 格式化代码</li>
+<li><code>⌃⌥O</code> 优化import</li>
+<li><code>⌃⌥I</code> 自动缩进线</li>
+<li><code>⇥ / ⇧⇥</code> 缩进代码 / 反缩进代码</li>
+<li><code>⌘X</code> 剪切当前行或选定的块到剪贴板</li>
+<li><code>⌘C</code> 复制当前行或选定的块到剪贴板</li>
+<li><code>⌘V</code> 从剪贴板粘贴</li>
+<li><code>⌘⇧V</code> 从最近的缓冲区粘贴</li>
+<li><code>⌘D</code> 复制当前行或选定的块</li>
+<li><code>⌘⌫</code> 删除当前行或选定的块的行</li>
+<li><code>⌃⇧J</code> 智能的将代码拼接成一行</li>
+<li><code>⌘↩</code> 智能的拆分拼接的行</li>
+<li><code>⇧↩</code> 开始新的一行</li>
+<li><code>⌘⇧U</code> 大小写切换</li>
+<li><code>⌘⇧] / ⌘⇧[</code> 选择直到代码块结束/开始</li>
+<li><code>⌥⌦</code> 删除到单词的末尾（⌦键为Fn+Delete）</li>
+<li><code>⌥⌫</code> 删除到单词的开头</li>
+<li><code>⌘+ / ⌘-</code> 展开 / 折叠代码块</li>
+<li><code>⌘⇧+</code> 展开所以代码块</li>
+<li><code>⌘⇧-</code> 折叠所有代码块</li>
+<li><code>⌘W</code> 关闭活动的编辑器选项卡</li>
+</ul>
+<blockquote>
+<p><strong>Search/Replace（查询/替换）</strong></p>
+</blockquote>
+<ul>
+<li><code>Double ⇧</code> 查询任何东西</li>
+<li><code>⌘F</code> 文件内查找</li>
+<li><code>⌘G</code> 查找模式下，向下查找</li>
+<li><code>⌘⇧G</code> 查找模式下，向上查找</li>
+<li><code>⌘R</code> 文件内替换</li>
+<li><code>⌘⇧F</code> 全局查找（根据路径）</li>
+<li><code>⌘⇧R</code> 全局替换（根据路径）</li>
+<li><code>⌘⇧S</code> 查询结构（Ultimate Edition 版专用，需要在Keymap中设置）</li>
+<li><code>⌘⇧M</code> 替换结构（Ultimate Edition 版专用，需要在Keymap中设置）</li>
+</ul>
+<blockquote>
+<p><strong>Usage Search（使用查询）</strong></p>
+</blockquote>
+<ul>
+<li><code>⌥F7 / ⌘F7</code> 在文件中查找用法 / 在类中查找用法</li>
+<li><code>⌘⇧F7</code> 在文件中突出显示的用法</li>
+<li><code>⌘⌥F7</code> 显示用法</li>
+</ul>
+<blockquote>
+<p><strong>Compile and Run（编译和运行）</strong></p>
+</blockquote>
+<ul>
+<li><code>⌘F9</code> 编译Project</li>
+<li><code>⌘⇧F9</code> 编译选择的文件、包或模块</li>
+<li><code>⌃⌥R</code> 弹出 Run 的可选择菜单</li>
+<li><code>⌃⌥D</code> 弹出 Debug 的可选择菜单</li>
+<li><code>⌃R</code> 运行</li>
+<li><code>⌃D</code> 调试</li>
+<li><code>⌃⇧R, ⌃⇧D</code> 从编辑器运行上下文环境配置</li>
+</ul>
+<blockquote>
+<p><strong>Debugging（调试）</strong></p>
+</blockquote>
+<ul>
+<li><code>F8</code> 进入下一步，如果当前行断点是一个方法，则不进入当前方法体内</li>
+<li><code>F7</code> 进入下一步，如果当前行断点是一个方法，则进入当前方法体内，如果该方法体还有方法，则不会进入该内嵌的方法中</li>
+<li><code>⇧F7</code> 智能步入，断点所在行上有多个方法调用，会弹出进入哪个方法</li>
+<li><code>⇧F8</code> 跳出</li>
+<li><code>⌥F9</code> 运行到光标处，如果光标前有其他断点会进入到该断点</li>
+<li><code>⌥F8</code> 计算表达式（可以更改变量值使其生效）</li>
+<li><code>⌘⌥R</code> 恢复程序运行，如果该断点下面代码还有断点则停在下一个断点上</li>
+<li><code>⌘F8</code> 切换断点（若光标当前行有断点则取消断点，没有则加上断点）</li>
+<li><code>⌘⇧F8</code> 查看断点信息</li>
+</ul>
+<blockquote>
+<p><strong>Navigation（导航）</strong></p>
+</blockquote>
+<ul>
+<li><code>⌘O</code> 查找类文件</li>
+<li><code>⌘⇧O</code> 查找所有类型文件、打开文件、打开目录，打开目录需要在输入的内容前面或后面加一个反斜杠<code>/</code></li>
+<li><code>⌘⌥O</code> 前往指定的变量 / 方法</li>
+<li><code>⌃← / ⌃→</code> 左右切换打开的编辑tab页</li>
+<li><code>F12</code> 返回到前一个工具窗口</li>
+<li><code>⎋</code> 从工具窗口进入代码文件窗口</li>
+<li><code>⇧⎋</code> 隐藏当前或最后一个活动的窗口，且光标进入代码文件窗口</li>
+<li><code>⌘⇧F4</code> 关闭活动run/messages/find/… tab</li>
+<li><code>⌘L</code> 在当前文件跳转到某一行的指定处</li>
+<li><code>⌘E</code> 显示最近打开的文件记录列表</li>
+<li><code>⌘⌥← / ⌘⌥→</code> 退回 / 前进到上一个操作的地方</li>
+<li><code>⌘⇧⌫</code> 跳转到最后一个编辑的地方</li>
+<li><code>⌥F1</code> 显示当前文件选择目标弹出层，弹出层中有很多目标可以进行选择(如在代码编辑窗口可以选择显示该文件的Finder)</li>
+<li><code>⌘B / ⌘ 鼠标点击</code> 进入光标所在的方法/变量的接口或是定义处</li>
+<li><code>⌘⌥B</code> 跳转到实现处，在某个调用的方法名上使用会跳到具体的实现处，可以跳过接口</li>
+<li><code>⌥ Space, ⌘Y</code> 快速打开光标所在方法、类的定义</li>
+<li><code>⌃⇧B</code> 跳转到类型声明处</li>
+<li><code>⌘U</code> 前往当前光标所在方法的父类的方法 / 接口定义</li>
+<li><code>⌃↓ / ⌃↑</code> 当前光标跳转到当前文件的前一个/后一个方法名位置</li>
+<li><code>⌘] / ⌘[</code> 移动光标到当前所在代码的花括号开始/结束位置</li>
+<li><code>⌘F12</code> 弹出当前文件结构层，可以在弹出的层上直接输入进行筛选（可用于搜索类中的方法）</li>
+<li><code>⌃H</code> 显示当前类的层次结构</li>
+<li><code>⌘⇧H</code> 显示方法层次结构</li>
+<li><code>⌃⌥H</code> 显示调用层次结构</li>
+<li><code>F2 / ⇧F2</code> 跳转到下一个/上一个突出错误或警告的位置</li>
+<li><code>F4 / ⌘↓</code> 编辑/查看代码源</li>
+<li><code>⌥ Home</code> 显示到当前文件的导航条</li>
+<li><code>F3</code>选中文件/文件夹/代码行，添加/取消书签</li>
+<li><code>⌥F3</code> 选中文件/文件夹/代码行，使用助记符添加/取消书签</li>
+<li><code>⌃0...⌃9</code> 定位到对应数值的书签位置</li>
+<li><code>⌘F3</code> 显示所有书签</li>
+</ul>
+<blockquote>
+<p><strong>Refactoring（重构）</strong></p>
+</blockquote>
+<ul>
+<li><code>F5</code> 复制文件到指定目录</li>
+<li><code>F6</code> 移动文件到指定目录</li>
+<li><code>⌘⌫</code> 在文件上为安全删除文件，弹出确认框</li>
+<li><code>⇧F6</code> 重命名文件</li>
+<li><code>⌘F6</code> 更改签名</li>
+<li><code>⌘⌥N</code> 一致性</li>
+<li><code>⌘⌥M</code> 将选中的代码提取为方法</li>
+<li><code>⌘⌥V</code> 提取变量</li>
+<li><code>⌘⌥F</code> 提取字段</li>
+<li><code>⌘⌥C</code> 提取常量</li>
+<li><code>⌘⌥P</code> 提取参数</li>
+</ul>
+<blockquote>
+<p><strong>VCS/Local History（版本控制/本地历史记录）</strong></p>
+</blockquote>
+<ul>
+<li><code>⌘K</code> 提交代码到版本控制器</li>
+<li><code>⌘T</code> 从版本控制器更新代码</li>
+<li><code>⌥⇧C</code> 查看最近的变更记录</li>
+<li><code>⌃C</code> 快速弹出版本控制器操作面板</li>
+</ul>
+<blockquote>
+<p><strong>Live Templates（动态代码模板）</strong></p>
+</blockquote>
+<ul>
+<li><code>⌘⌥J</code> 弹出模板选择窗口，将选定的代码使用动态模板包住</li>
+<li><code>⌘J</code> 插入自定义动态代码模板</li>
+</ul>
+<blockquote>
+<p><strong>General（通用）</strong></p>
+</blockquote>
+<ul>
+<li><code>⌘1...⌘9</code> 打开相应编号的工具窗口</li>
+<li><code>⌘S</code> 保存所有</li>
+<li><code>⌘⌥Y</code> 同步、刷新</li>
+<li><code>⌃⌘F</code> 切换全屏模式</li>
+<li><code>⌘⇧F12</code> 切换最大化编辑器</li>
+<li><code>⌥⇧F</code> 添加到收藏夹</li>
+<li><code>⌥⇧I</code> 检查当前文件与当前的配置文件</li>
+<li>`§⌃, ⌃“ 快速切换当前的scheme（切换主题、代码样式等）</li>
+<li><code>⌘,</code> 打开IDEA系统设置</li>
+<li><code>⌘;</code> 打开项目结构对话框</li>
+<li><code>⇧⌘A</code> 查找动作（可设置相关选项）</li>
+<li><code>⌃⇥</code> 编辑窗口标签和工具窗口之间切换（如果在切换的过程加按上delete，则是关闭对应选中的窗口）</li>
+</ul>
+<blockquote>
+<p><strong>Other（一些官方文档上没有体现的快捷键）</strong></p>
+</blockquote>
+<ul>
+<li><code>⌘⇧8</code> 竖编辑模式</li>
+</ul>
+<blockquote>
+<p><strong>导航</strong></p>
+</blockquote>
+<ul>
+<li><code>⌘O</code> 查找类文件 <code>Ctrl + N</code></li>
+<li><code>⌘⌥O</code> 前往指定的变量 / 方法 <code>Ctrl + Shift + Alt + N</code></li>
+<li><code>⌃←</code> / <code>⌃→</code> 左右切换打开的编辑tab页<code>Alt←</code>/<code>Alt→</code></li>
+<li><code>⎋</code> 从工具窗口进入代码文件窗口 <code>ESC</code></li>
+<li><code>⌘L</code> 在当前文件跳转到某一行的指定处 <code>Ctrl + G</code></li>
+<li><code>⌘E</code> 显示最近打开的文件记录列表 <code>Ctrl + E</code></li>
+<li><code>⌘⌥←</code>/ <code>⌘⌥→</code>退回 / 前进到上一个操作的地方 <code>Ctrl + Alt + ←</code>/<code>Ctrl + Alt + →</code></li>
+<li><code>⌘⇧⌫</code> 跳转到最后一个编辑的地方</li>
+<li><code>⌃H</code> 显示当前类的层次结构<code>Ctrl + H</code></li>
+<li><code>⌘⇧H</code> 显示方法层次结构</li>
+<li><code>⌃⌥H</code> 显示调用层次结构</li>
+<li><code>F4</code> /<code>⌘↓</code> 编辑/查看代码源</li>
+<li><code>⌘⌥U</code> 显示类UML图</li>
+<li><code>⌃J</code> 查看注释</li>
+</ul>
+<blockquote>
+<p><strong>编辑</strong></p>
+</blockquote>
+<ul>
+<li><code>⌥⌦</code> 删除到单词的末尾（<code>⌦</code>键为<code>Fn+Delete</code>）</li>
+<li><code>⌥⌫</code> 删除到单词的开头</li>
+<li><code>⌘+</code> /<code>⌘-</code> 展开 / 折叠代码块</li>
+<li><code>⌘F1</code> 在错误或警告处显示具体描述信息</li>
+<li><code>⌘⌥L</code> 格式化代码</li>
+<li><code>⌃⌥O</code> 优化import</li>
+<li><code>⇧↩</code> 开始新的一行</li>
+<li><code>⌘⇧↩</code> 自动结束代码，行末自动添加分号</li>
+<li><code>⌃I</code> 实现方法（实现接口中的方法）</li>
+<li><code>⇧F6</code> 重命名文件或者变量</li>
+<li><code>⌘N</code>,<code>⌃↩</code>,<code>⌃N</code> 生成代码（getter、setter、构造函数、hashCode/equals,toString）</li>
+<li><code>⌘P</code> 显示方法的参数信息</li>
+</ul>
+<blockquote>
+<p><strong>查找</strong></p>
+</blockquote>
+<ul>
+<li><code>Double⇧</code> 查找任何东西</li>
+<li><code>⌘⇧F</code> 全局查找（根据路径）</li>
+<li><code>⌘F</code> 文件内查找</li>
+<li><code>⌘G</code> 查找模式下，向下查找</li>
+<li><code>⌘⇧G</code> 查找模式下，向上查找</li>
+</ul>
+<blockquote>
+<p><strong>导航</strong></p>
+</blockquote>
+<ul>
+<li><code>⌘⌥B</code> 跳转到接口的实现</li>
+<li><code>⌘U</code> 查看接口定义</li>
+<li><code>⌘⌥←</code> /<code>⌘⌥→</code> 退回 / 前进到上一个操作的地方</li>
+<li><code>⌘B</code> /<code>⌘ 鼠标点击</code> 进入光标所在的方法/变量的接口或是定义处</li>
+<li><code>⌃⇧B</code> 跳转到类型声明处</li>
+<li><code>⌥ Space</code>,<code>⌘Y</code> 快速打开光标所在方法、类的定义</li>
+<li><code>⌘O</code> 查找类文件</li>
+<li><code>⌘⇧O</code> 查找所有类型文件、打开文件、打开目录，打开目录需要在输入的内容前面或后面加一个反斜杠/</li>
+<li><code>F12</code> 返回到前一个工具窗口</li>
+<li><code>⎋</code> 从工具窗口进入代码文件窗口</li>
+<li><code>⇧⎋</code> 隐藏当前或最后一个活动的窗口，且光标进入代码文件窗口</li>
+<li><code>F3选中文件/文件夹/代码行</code>，添加/取消书签</li>
+<li><code>⌥F3 选中文件/文件夹/代码行</code>，使用助记符添加/取消书签</li>
+<li><code>⌃0…⌃9</code> 定位到对应数值的书签位置</li>
+<li><code>⌘F3</code> 显示所有书签</li>
+<li><code>⌥F1</code> 显示当前文件选择目标弹出层，弹出层中有很多目标可以进行选择(如在代码编辑窗口可以选择显示该文件的Finder)</li>
+<li><code>⌘F12</code> 弹出当前文件结构层，可以在弹出的层上直接输入进行筛选（可用于搜索类中的方法）</li>
+</ul>
+<blockquote>
+<p><strong>通用</strong></p>
+</blockquote>
+<ul>
+<li><code>⌃⌘F</code> 切换全屏模式</li>
+</ul>
+
+    </div>
+
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">Zoie</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2018/05/14/shell/" class="pre-post btn btn-default" title='Shell常用命令'>
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">Shell常用命令</span>
+        </a>
+    
+    
+</div>
+
+
+    <div id="comments">
+        
+	<!--PC和WAP自适应版-->
+<div id="SOHUCS"></div>
+<script type="text/javascript">
+	(function(){var appid='cyt8KmUC1';var conf='prod_855a68d3b3d91855360a6215672a505a';var width=window.innerWidth||document.documentElement.clientWidth;if(width<960){window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id='+appid+'&conf='+conf+'"><\/script>');}else{var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}
+	c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})});}})();
+</script>	
+
+    </div>
+
+
+
+
+
+                </main>
+                
+    <aside class="col-md-4 sidebar">
+        
+        
+    <div class="widget">    
+        <h3 class="title">搜索</h3>
+        <div id="search-form">
+            <div id="result-mask" class="hide"></div>
+            <div class="search-area">
+                
+                    <input id="search-key" type="search" autocomplete="off" placeholder="搜点什么呢?">
+                    <button type="button" class="search-form-submit" id="search-local">站内搜索</button>
+                
+                
+            </div>
+            <div id="result-wrap" class="hide">
+                <div id="search-result"></div>
+            </div>
+            <div class="hide">
+                <template id="search-tpl">
+                    <div class="item">
+                        <a href="/{path}" title="{title}">
+                            <div class="title">{title}</div>
+                            <div class="content">{content}</div>
+                        </a>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </div>
+
+        
+        
+    <div class="widget notification">
+        <h3 class="title">网站公告</h3>
+        <div>
+            <!-- <p>主题Snippet v1.2.0版本已经上线！欢迎更新~ <br/>
+主题下载：<a href="https://github.com/shenliyang/hexo-theme-snippet" title="fork me" target="_blank">Snippet主题</a> <br/>
+<hr/>接受贡献，包括不限于提交问题与需求，修复代码。欢迎Pull Request<br/>支持主题：<a href="https://github.com/shenliyang/hexo-theme-snippet/stargazers">Star一下</a>
+</p> -->
+暂无
+        </div>
+    </div>
+
+        
+        
+    <div class="widget">
+      <h3 class="title">社交</h3> 
+        <div class="content social">
+            
+	            <a href="//github.com/Zoie1996" rel="external nofollow" title="Github" target="_blank">
+			    	<i class="git fa fa-git"></i>
+			    </a>
+            
+	            <a href="mailto:18086869080@163.com" rel="external nofollow" title="邮箱" target="_blank">
+			    	<i class="envelope-o fa fa-envelope-o"></i>
+			    </a>
+            
+	            <a href="/" rel="external nofollow" title="联系QQ" target="_blank">
+			    	<i class="qq fa fa-qq"></i>
+			    </a>
+            
+	            <a href="/" rel="external nofollow" title="微博" target="_blank">
+			    	<i class="weibo fa fa-weibo"></i>
+			    </a>
+            
+	            <a href="/" rel="external nofollow" title="QQ群" target="_blank">
+			    	<i class="users fa fa-users"></i>
+			    </a>
+            
+	            <a href="/atom.xml" rel="external nofollow" title="RSS" target="_blank">
+			    	<i class="feed fa fa-feed"></i>
+			    </a>
+            
+        </div>
+    </div>
+
+
+        
+        
+    <div class="widget">
+        <h3 class="title">分类</h3>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/"><i class="fa" aria-hidden="true">Linux</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link current" href="/categories/Python3/"><i class="fa" aria-hidden="true">Python3</i></a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python3基础/"><i class="fa" aria-hidden="true">Python3基础</i></a><span class="category-list-count">3</span></li></ul>
+    </div>
+
+
+        
+        
+    <div class="widget">
+      <h3 class="title">归档</h3>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/"><i class="fa" aria-hidden="true">五月 2018</i></a><span class="archive-list-count">7</span></li></ul>
+    </div>
+
+
+        
+        
+  <div class="widget">
+    <h3 class="title">标签云</h3>
+    <div class="content tag-cloud">
+        <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/PyCharm快捷键/" style="font-size: 10px;">PyCharm快捷键</a> <a href="/tags/Pycharm快捷键/" style="font-size: 10px;">Pycharm快捷键</a> <a href="/tags/Shell/" style="font-size: 10px;">Shell</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a> <a href="/tags/分支/" style="font-size: 10px;">分支</a> <a href="/tags/循环/" style="font-size: 10px;">循环</a> <a href="/tags/打印月历/" style="font-size: 10px;">打印月历</a> <a href="/tags/标签/" style="font-size: 10px;">标签</a> <a href="/tags/递归/" style="font-size: 10px;">递归</a> <a href="/tags/遍历目录/" style="font-size: 10px;">遍历目录</a>
+    </div>
+  </div>
+
+
+        
+        
+    <div class="widget">
+        <h3 class="title">友链</h3>
+        <div class="content friends-link">
+        
+            <a href="http://www.baidu.com" class="fa" target="_blank">个人博客</a>
+        
+        </div>
+    </div>
+
+
+        
+    </aside>
+
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12"> 
+                <span>Copyright &copy; 2017
+                </span> | 
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> | 
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+	<script src="/js/search.js?rev=@@hash"></script>
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+
+</body>
+</html>
