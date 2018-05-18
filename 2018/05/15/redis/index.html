@@ -29,7 +29,7 @@
     <!--Title-->
 
 
-<title>Python3 - redis连接及基本操作 | Zoie</title>
+<title>Python3 - Redis安装配置及基本操作 | Zoie</title>
 
 
     <link rel="alternate" href="/atom.xml" title="Zoie" type="application/atom+xml">
@@ -124,9 +124,9 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="Python3 - redis连接及基本操作">
+        <h1 id="Python3 - Redis安装配置及基本操作">
             
-	            Python3 - redis连接及基本操作
+	            Python3 - Redis安装配置及基本操作
             
         </h1>
         <div class="post-meta">
@@ -134,8 +134,8 @@
     
     <span class="categories-meta fa-wrap">
         <i class="fa fa-folder-open-o"></i>
-        <a href="/categories/database">
-            database
+        <a href="/categories/数据库">
+            数据库
         </a>
     </span>
     
@@ -172,40 +172,46 @@
 <p>Redis是一个开源的使用ANSI C语言编写、遵守BSD协议、支持网络、可基于内存亦可持久化的日志型、Key-Value数据库，并提供多种语言的API。</p>
 <p>​                                                                                                                                       </p>
 <blockquote>
-<p><strong>redis</strong></p>
+<p><strong>Redis安装及配置</strong></p>
 </blockquote>
-<p><strong>1. 修改redis.conf文件配置</strong></p>
+<p><strong>1. redis安装</strong></p>
+<p><strong>下载地址：</strong><a href="http://redis.io/download" target="_blank" rel="noopener">http://redis.io/download</a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Linux 下安装</span><br><span class="line">    wget http://download.redis.io/releases/redis-3.2.11.tar.gz</span><br><span class="line">    tar xzf redis-2.8.17.tar.gz</span><br><span class="line">    cd redis-2.8.17</span><br><span class="line">    make</span><br></pre></td></tr></table></figure>
+<p><strong>2. 修改redis.conf文件配置</strong></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cp redis-3-2-11/redis.conf redis.conf 拷贝文件避免更改错误</span><br><span class="line">    61行 -- bind 172.27.0.11 绑定内网地址</span><br><span class="line">    84行 -- port 6379 默认端口</span><br><span class="line">    480行 -- requirepass liutc1014? 删除注释,修改密码</span><br><span class="line">    179行 -- databases 16 默认redis下16个数据库</span><br></pre></td></tr></table></figure>
-<p><strong>2. redis-server 服务器</strong>  </p>
+<p><strong>3. redis-server 服务器</strong>  </p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">启动服务器</span><br><span class="line">	redis-server myredis.conf 启动redis服务器</span><br><span class="line">    redis-server myredis.conf &gt; myredis.log &amp; 后台运行</span><br><span class="line">关闭服务器</span><br><span class="line">    jobs --&gt; fg %1 --&gt; ^c 关闭redis服务器(自动保存)</span><br><span class="line">    kill 进程号 关闭redis服务器 不保存</span><br></pre></td></tr></table></figure>
-<p><strong>3. redis-cli 客户端</strong></p>
+<p><strong>4. redis-cli 客户端</strong></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">redis-cli -h 172.27.0.11(内网地址) -p 端口号(默认端口可以省略) 连接服务器</span><br><span class="line">172.27.0.11:6379&gt; auth liutc1014? 验证</span><br><span class="line">172.27.0.11:6379&gt; ping 查看是否连接</span><br><span class="line">PONG</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p><strong>键</strong></p>
+<p><strong>Redis命令</strong></p>
+<ol>
+<li><strong>键</strong></li>
+</ol>
 </blockquote>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 设置键</span><br><span class="line">set key value </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 获取键的值</span><br><span class="line">get key</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 删除键</span><br><span class="line">del key </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 查看所有键</span><br><span class="line">keys * </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 设置键过期时间</span><br><span class="line">set key value ex seconds</span><br><span class="line"><span class="meta">#</span> 给未设置过期时间的键设置过期时间</span><br><span class="line">expire key seconds </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> ttl 查看过期时间</span><br><span class="line">ttl key</span><br><span class="line">(integer) -2 # 已过期</span><br><span class="line">(integer) -1 # 永远不过期</span><br><span class="line">    </span><br><span class="line"><span class="meta">#</span> 数据持久化</span><br><span class="line">bgsave</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 切换到index号数据库</span><br><span class="line">select index</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> flushall 清空所有数据库</span><br><span class="line">flushall</span><br><span class="line"><span class="meta">#</span> flushdb 清空当前数据库</span><br><span class="line">flushdb</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 停止服务器并保存/不保存数据</span><br><span class="line">shutdown save/nosave</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> info 查看信息</span><br><span class="line">info</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> type 查看键的类型</span><br><span class="line">type key</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><strong>字符串</strong></p>
-</blockquote>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> incr 将key中储存的数字值增一   -- 投票应用用redis</span><br><span class="line">incr key</span><br><span class="line"><span class="meta">#</span> incrby 所储存的值加上增量increment</span><br><span class="line">incrby key increment</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> decr 将 key 中储存的数字值减一</span><br><span class="line">decr key</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> strlen 返回key所储存的字符串值的长度</span><br><span class="line">strlen key</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> setex 设置key的值, 并将key的生存时间设为seconds(以秒为单位)。</span><br><span class="line">setex key seconds value</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><strong>哈希表 </strong><br>哈希表通常用来存储对象</p>
-</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> set 设置键</span><br><span class="line">set key value </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> get 获取键的值</span><br><span class="line">get key</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> del 删除键</span><br><span class="line">del key </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 查看所有键</span><br><span class="line">keys * </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 设置键过期时间</span><br><span class="line">set key value ex seconds</span><br><span class="line"><span class="meta">#</span> 给未设置过期时间的键设置过期时间</span><br><span class="line">expire key seconds </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> ttl 查看过期时间</span><br><span class="line">ttl key</span><br><span class="line">(integer) -2 # 已过期</span><br><span class="line">(integer) -1 # 永远不过期</span><br><span class="line">    </span><br><span class="line"><span class="meta">#</span> 数据持久化</span><br><span class="line">bgsave</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 切换到index号数据库</span><br><span class="line">select index</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> flushall 清空所有数据库</span><br><span class="line">flushall</span><br><span class="line"><span class="meta">#</span> flushdb 清空当前数据库</span><br><span class="line">flushdb</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 停止服务器并保存/不保存数据</span><br><span class="line">shutdown save/nosave</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> info 查看信息</span><br><span class="line">info</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> type 查看键的类型</span><br><span class="line">type key</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li><strong>字符串</strong></li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> incr 将key中储存的数字值增一  通常应用于投票redis</span><br><span class="line">incr key</span><br><span class="line"><span class="meta">#</span> incrby 所储存的值加上增量increment</span><br><span class="line">incrby key increment</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> decr 将 key 中储存的数字值减一</span><br><span class="line">decr key</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> strlen 返回key所储存的字符串值的长度</span><br><span class="line">strlen key</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> setex 设置key的值, 并将key的生存时间设为seconds(以秒为单位)。</span><br><span class="line">setex key seconds value</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li><strong>哈希表 </strong><br>哈希表通常用来存储对象</li>
+</ol>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 设置字段</span><br><span class="line">hset key field value</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 获取字段的值</span><br><span class="line">hget key field</span><br><span class="line"><span class="meta">#</span> 获取字段所有值</span><br><span class="line">hgetall key</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 删除字段</span><br><span class="line">hdel key field</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> hincrby 给域field的值加上增量increment</span><br><span class="line">hincrby key field increment</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><strong>列表</strong></p>
-</blockquote>
+<ol start="4">
+<li><strong>列表</strong></li>
+</ol>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> lset</span><br><span class="line">lset key index value</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> lpush / rpush 从左边/右边插入元素</span><br><span class="line">lpush key value [value ...]</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> linsert 在值pivot前后插入元素</span><br><span class="line">linsert key brfore/after pivot value</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> lset 修改列表下标为index的元素的值</span><br><span class="line">lset key index value</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> lindex 返回列表中，下标为index的元素</span><br><span class="line">lindex key index</span><br><span class="line"><span class="meta">#</span> lrange 获取指定区间内的值</span><br><span class="line">lrange key start stop</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> lpop / rpop 从左边/右边删除一个元素</span><br><span class="line">lpop/rpop key</span><br><span class="line"><span class="meta">#</span> lrem 根据参数count的值，移除列表中与参数value相等的元素</span><br><span class="line">lrem key count value</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><strong>集合</strong></p>
-</blockquote>
+<ol start="5">
+<li><strong>集合</strong></li>
+</ol>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 插入元素</span><br><span class="line">sadd key member [member ...]</span><br><span class="line"><span class="meta">#</span> 查看集合内元素</span><br><span class="line">smembers key</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> spop 移除随机一个元素</span><br><span class="line">spop key</span><br><span class="line"><span class="meta">#</span> srem 移除一个或多个元素，不存在的元素会被忽略</span><br><span class="line">srem key member [member ...]</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 求交并差集  交集(sinter) / 并集(sunion) / 差集 sdiff</span><br><span class="line">sinter/sunion/sdiff key [key ...]</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><strong>有序集合</strong></p>
-</blockquote>
+<ol start="6">
+<li><strong>有序集合</strong></li>
+</ol>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> zadd 添加元素</span><br><span class="line">zadd key score member [[score member] [score member] ...]</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> zrange/zrevrange 正序/倒序输出</span><br><span class="line">zrange key start stop</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> zincrby 给元素添加增量</span><br><span class="line">zincrby key increment member</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>更多内容详见redis中文官方文档: redisdoc.com</p>
+<p>更多内容详见redis中文官方文档: <a href="http://redisdoc.com" target="_blank" rel="noopener">Redis命令参考</a></p>
 </blockquote>
 
     </div>
@@ -336,7 +342,7 @@
         
     <div class="widget">
         <h3 class="title">分类</h3>
-        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/"><i class="fa" aria-hidden="true">Linux</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link current" href="/categories/Python3/"><i class="fa" aria-hidden="true">Python3</i></a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python3基础/"><i class="fa" aria-hidden="true">Python3基础</i></a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/database/"><i class="fa" aria-hidden="true">database</i></a><span class="category-list-count">1</span></li></ul>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/"><i class="fa" aria-hidden="true">Linux</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link current" href="/categories/Python3/"><i class="fa" aria-hidden="true">Python3</i></a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python3基础/"><i class="fa" aria-hidden="true">Python3基础</i></a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/"><i class="fa" aria-hidden="true">数据库</i></a><span class="category-list-count">1</span></li></ul>
     </div>
 
 
