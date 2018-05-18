@@ -1041,6 +1041,7 @@ pre {
 /*====================================================
     highlight
 ====================================================*/
+/*代码块内容*/
 pre,
 .highlight {
   overflow: auto;
@@ -1048,7 +1049,7 @@ pre,
   padding: 0;
   color: #c5c8c6;
   font-size: 13px;
-  background: #1d1f21;
+  background: #fff;
   line-height: 1.6;
 }
 code {
@@ -1074,10 +1075,12 @@ pre .meta {
 pre .comment {
   color: #969896;
 }
+/*代码块边框*/
 .highlight {
   -webkit-border-radius: 1px;
   -moz-border-radius: 1px;
-  border-radius: 1px;
+  border-radius: 5px;
+  border: 1px solid #e67d23;
 }
 .highlight pre {
   border: none;
@@ -1106,18 +1109,23 @@ pre .comment {
 .highlight figcaption a:hover {
   border-bottom-color: #c5c8c6;
 }
+/*代码块前面的数字块*/
 .highlight .gutter pre {
   padding-left: 10px;
   padding-right: 10px;
-  color: #888f96;
+  /*color: #888f96;*/
+  color: #999;
   text-align: right;
-  background-color: #000;
+  /*background-color: #000;*/
+  background-color: #fff;
 }
+/*中间的代码块*/
 .highlight .code pre {
   width: 100%;
   padding-left: 10px;
   padding-right: 10px;
-  background-color: #1d1f21;
+  /*background-color: #1d1f21;*/
+  background-color: #fff;
 }
 .highlight .line {
   height: 20px;
