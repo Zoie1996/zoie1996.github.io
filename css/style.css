@@ -674,6 +674,7 @@ pre {
   font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
   word-wrap: break-word;
 }
+/*代码块中间的代码颜色*/
 .post-content pre {
   margin: 1.64em 0;
   border: none;
@@ -682,7 +683,8 @@ pre {
   overflow: auto;
   line-height: 1.5;
   font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
-  color: #808080;
+  /*color: #808080;*/
+  color: #333;
   background-color: #f9f9f9;
 }
 .post-content pre code {
@@ -1142,6 +1144,7 @@ pre .comment {
 .gist table td {
   border: none;
 }
+/*代码高亮颜色*/
 pre .variable,
 pre .attribute,
 pre .tag,
