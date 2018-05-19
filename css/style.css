@@ -1076,7 +1076,9 @@ pre .meta {
   color: #84048F;
 }
 pre .comment {
-  color: #969896;
+  /*color: #969896;*/
+  color: #998;
+  font-style: italic;
 }
 /*代码块边框*/
 .highlight {
