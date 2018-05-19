@@ -1158,7 +1158,7 @@ pre .html .doctype,
 pre .css .id,
 pre .css .class,
 pre .css .pseudo {
-  color: #c66;
+  color: #b75f5f;
 }
 pre .number,
 pre .preprocessor,
@@ -1167,7 +1167,8 @@ pre .literal,
 pre .params,
 pre .constant,
 pre .command {
-  color: #de935f;
+  /*color: #de935f;*/
+  color: #ed8632;
 }
 pre .ruby .class .title,
 pre .css .rules .attribute,
@@ -1181,7 +1182,7 @@ pre .special,
 pre .number,
 pre .formula {
   /*color: #b5bd68;*/
-  color: #f1e941;
+  color: #008080;
 }
 
 pre .title,
