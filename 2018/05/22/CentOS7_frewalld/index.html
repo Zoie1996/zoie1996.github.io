@@ -29,7 +29,7 @@
     <!--Title-->
 
 
-<title>标签: 分支 | Zoie</title>
+<title>CentOS7使用firewalld打开关闭防火墙与端口 | Zoie</title>
 
 
     <link rel="alternate" href="/atom.xml" title="Zoie" type="application/atom+xml">
@@ -120,37 +120,118 @@
     <section class="content-wrap">
         <div class="container">
             <div class="row">
-                <main class="col-md-8 main-content ">
-                    <h3> 
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="CentOS7使用firewalld打开关闭防火墙与端口">
+            
+	            CentOS7使用firewalld打开关闭防火墙与端口
+            
+        </h1>
+        <div class="post-meta">
     
-        分支 
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a href="/categories/Linux">
+            Linux
+        </a>
+    </span>
     
     
-</h3>
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+                
+                    <a href="/tags/firewalld" title='firewalld'>
+                        firewalld
+                    </a>
+                
+            
+        </span>
+    </span>
+    
 
-    <article class="post">
+    
         
-        <div class="post-content">
-            <div class="post-head home-post-head">
-                <h1 class="post-title"> 
-                    <a href="/2018/05/15/if_while/">Python3 - 分支和循环结构</a>
-                </h1>
-                <div class="post-meta">  &bull;
-                    <time class="post-date" datetime="" title="">
-                        2018年05月14日
-                    </time>
-                </div>
-            </div>
-            <p class="brief">
-                
-                    一、分支结构Python条件语句是通过一条或多条语句的执行结果（True或者False）来决定执行的代码块。                                           ...
-                
-            </p> 
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2018/05/21</span>
+        </span>
+    
+</div>
+
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <p>###CentOS7使用firewalld打开关闭防火墙与端口                 </p>
+<p>​                                                                                                                                                                 </p>
+<blockquote>
+<p>1、firewalld的基本使用</p>
+</blockquote>
+<p>启动： systemctl start firewalld<br>查看状态： systemctl status firewalld<br>停止： systemctl disable firewalld<br>禁用： systemctl stop firewalld</p>
+<p><br></p>
+<blockquote>
+<ol start="2">
+<li>systemctl的基本使用</li>
+</ol>
+</blockquote>
+<p>systemctl是CentOS7的服务管理工具中主要的工具，它融合之前service和chkconfig的功能于一体。</p>
+<p>启动一个服务：systemctl start firewalld.service<br>关闭一个服务：systemctl stop firewalld.service<br>重启一个服务：systemctl restart firewalld.service<br>显示一个服务的状态：systemctl status firewalld.service<br>在开机时启用一个服务：systemctl enable firewalld.service<br>在开机时禁用一个服务：systemctl disable firewalld.service<br>查看服务是否开机启动：systemctl is-enabled firewalld.service<br>查看已启动的服务列表：systemctl list-unit-files|grep enabled<br>查看启动失败的服务列表：systemctl –failed</p>
+<p><br></p>
+<blockquote>
+<ol start="3">
+<li>配置firewalld-cmd</li>
+</ol>
+</blockquote>
+<p>查看版本： firewall-cmd –version<br>查看帮助： firewall-cmd –help<br>显示状态： firewall-cmd –state<br>查看所有打开的端口： firewall-cmd –zone=public –list-ports<br>更新防火墙规则： firewall-cmd –reload<br>查看区域信息:  firewall-cmd –get-active-zones<br>查看指定接口所属区域： firewall-cmd –get-zone-of-interface=eth0<br>拒绝所有包：firewall-cmd –panic-on<br>取消拒绝状态： firewall-cmd –panic-off<br>查看是否拒绝： firewall-cmd –query-panic</p>
+<p><br></p>
+<blockquote>
+<ol start="4">
+<li>开启一个端口</li>
+</ol>
+</blockquote>
+<p>添加   firewall-cmd –zone=public –add-port=80/tcp –permanent    （–permanent永久生效，没有此参数重启后失效）<br>重新载入  firewall-cmd –reload<br>查看  firewall-cmd –zone= public –query-port=80/tcp<br>删除  firewall-cmd –zone= public –remove-port=80/tcp –permanent</p>
+
+    </div>
+
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">Zoie</a>
+            
         </div>
-    </article>
- 
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2018/05/22/create_django/" class="next-post btn btn-default" title='Python3 - 使用命令创建Django项目'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">Python3 - 使用命令创建Django项目</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
 
 
+    <div id="comments">
+        
+	<!--PC和WAP自适应版-->
+<div id="SOHUCS"></div>
+<script type="text/javascript">
+	(function(){var appid='cyt8KmUC1';var conf='prod_855a68d3b3d91855360a6215672a505a';var width=window.innerWidth||document.documentElement.clientWidth;if(width<960){window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id='+appid+'&conf='+conf+'"><\/script>');}else{var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}
+	c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})});}})();
+</script>	
+
+    </div>
 
 
 
