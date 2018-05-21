@@ -1073,7 +1073,7 @@ pre code {
 }
 pre .meta {
   /*color: #b294bb;*/
-  color: #84048F;
+  color: #6b0475;
 }
 pre .comment {
   /*color: #969896;*/
@@ -1207,7 +1207,7 @@ pre .coffeescript .title {
 pre .keyword,
 pre .javascript .function {
   /*color: #b294bb;*/
-  color: #84048F;
+  color: #6b0475;
 }
 /*====================================================
     media
