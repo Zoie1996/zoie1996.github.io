@@ -29,7 +29,7 @@
     <!--Title-->
 
 
-<title>标签: PyCharm快捷键 | Zoie</title>
+<title>Python3 - 使用命令创建Django项目 | Zoie</title>
 
 
     <link rel="alternate" href="/atom.xml" title="Zoie" type="application/atom+xml">
@@ -120,58 +120,102 @@
     <section class="content-wrap">
         <div class="container">
             <div class="row">
-                <main class="col-md-8 main-content ">
-                    <h3> 
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Python3 - 使用命令创建Django项目">
+            
+	            Python3 - 使用命令创建Django项目
+            
+        </h1>
+        <div class="post-meta">
     
-        PyCharm快捷键 
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a href="/categories/Python3">
+            Python3
+        </a>
+    </span>
     
     
-</h3>
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+                
+                    <a href="/tags/Django" title='Django'>
+                        Django
+                    </a>
+                
+            
+        </span>
+    </span>
+    
 
-    <article class="post">
+    
         
-        <div class="post-content">
-            <div class="post-head home-post-head">
-                <h1 class="post-title"> 
-                    <a href="/2018/05/15/pycharm_windows_keyboard_shortcuts/">Windows下PyCharm的基本快捷键</a>
-                </h1>
-                <div class="post-meta">  &bull;
-                    <time class="post-date" datetime="" title="">
-                        2018年05月15日
-                    </time>
-                </div>
-            </div>
-            <p class="brief">
-                
-                    Windows下Python IDE PyCharm的基本快捷键和配置简介​                                                           ...
-                
-            </p> 
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2018/05/21</span>
+        </span>
+    
+</div>
+
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h3 id="使用命令创建Django项目"><a href="#使用命令创建Django项目" class="headerlink" title="使用命令创建Django项目"></a>使用命令创建Django项目</h3><p>​                                                                                                                               </p>
+<blockquote>
+<p><strong>1. Windows环境</strong></p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">1. 创建虚拟环境, 目录名venv</span><br><span class="line">	$ python -m venv venv  </span><br><span class="line">2. 查看虚拟目录</span><br><span class="line">	$ <span class="built_in">cd</span> venv </span><br><span class="line">3. 激活虚拟环境</span><br><span class="line">	$ <span class="built_in">cd</span> Scripts 切换到脚本</span><br><span class="line">	$ activate 激活 </span><br><span class="line">4. 在虚拟环境安装django并指定版本号</span><br><span class="line">	$ pip install django[==版本号] </span><br><span class="line">5. 查看django版本(可跳过此步骤)</span><br><span class="line">	$ django-admin --version</span><br><span class="line">6. 开启一个项目</span><br><span class="line">	$ django-admin startproject hello_django .</span><br><span class="line">7. 切换到hello_django目录</span><br><span class="line">	$ <span class="built_in">cd</span> hello_django</span><br><span class="line">10. 启动服务器</span><br><span class="line">	$ python3 manage.py runserver</span><br><span class="line">11. 开启一个应用, 应用名hrs</span><br><span class="line">	$ python manage.py startapp hrs</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<blockquote>
+<ol start="2">
+<li><strong>MAC / Linux 环境</strong></li>
+</ol>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">1. 创建项目文件夹</span><br><span class="line">	$ mkdir hello_django</span><br><span class="line">2. 切换到项目目录</span><br><span class="line">	$ <span class="built_in">cd</span> hello_django/</span><br><span class="line">3. 使用venv模块创建虚拟环境，目录名venv</span><br><span class="line">	<span class="comment"># pythonX 早期版本建虚拟环境</span></span><br><span class="line">	<span class="comment">#	$pip install virtualenv</span></span><br><span class="line">	<span class="comment"># pythonX -m irtualenv venv</span></span><br><span class="line">	$ python3 -m venv venv</span><br><span class="line">4. 激活虚拟环境</span><br><span class="line">	$ <span class="built_in">source</span> venv/bin/activate</span><br><span class="line">5. 更新pip到最新版本(如果已经是最新版则跳过次步)</span><br><span class="line">	$ python -m pip install --upgrade pip</span><br><span class="line">6. 使用pip安装django</span><br><span class="line">	$ pip install django</span><br><span class="line">7. 通过安装django时安装的脚本工具django-admin检查django版本(可跳过此步骤)</span><br><span class="line">	$ django-admin --version</span><br><span class="line">8. 开启一个项目</span><br><span class="line">	$ django-admin startproject hello_django .</span><br><span class="line">9. 切换到hello_django目录</span><br><span class="line">	$ <span class="built_in">cd</span> hello_django</span><br><span class="line">10. 启动服务器</span><br><span class="line">	$ python manage.py runserver</span><br><span class="line">11. 开启一个应用, 应用名hrs</span><br><span class="line">	$ python manage.py startapp hrs</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">Zoie</a>
+            
         </div>
-    </article>
- 
-    <article class="post">
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2018/05/19/redis/" class="next-post btn btn-default" title='Redis安装配置及基本操作'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">Redis安装配置及基本操作</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
         
-        <div class="post-content">
-            <div class="post-head home-post-head">
-                <h1 class="post-title"> 
-                    <a href="/2018/05/15/pycharm_mac_keyboard_shortcuts/">Mac下PyCharm的基本快捷键</a>
-                </h1>
-                <div class="post-meta">  &bull;
-                    <time class="post-date" datetime="" title="">
-                        2018年05月15日
-                    </time>
-                </div>
-            </div>
-            <p class="brief">
-                
-                    Mac下Python IDE PyCharm的基本快捷键和配置简介​                                                               ...
-                
-            </p> 
-        </div>
-    </article>
- 
+	<!--PC和WAP自适应版-->
+<div id="SOHUCS"></div>
+<script type="text/javascript">
+	(function(){var appid='cyt8KmUC1';var conf='prod_855a68d3b3d91855360a6215672a505a';var width=window.innerWidth||document.documentElement.clientWidth;if(width<960){window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id='+appid+'&conf='+conf+'"><\/script>');}else{var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}
+	c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})});}})();
+</script>	
 
-
+    </div>
 
 
 
