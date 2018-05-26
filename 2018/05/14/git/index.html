@@ -169,7 +169,7 @@
     
     <div class="post-body post-content">
         <h3 id="Git的基本常用命令-入门级"><a href="#Git的基本常用命令-入门级" class="headerlink" title="Git的基本常用命令(入门级)"></a>Git的基本常用命令(入门级)</h3><blockquote>
-<p>###基本命令</p>
+<p>基本命令</p>
 </blockquote>
 <ul>
 <li><p>git –version   查看git版本 </p>
@@ -202,36 +202,12 @@
 </li>
 </ul>
 <blockquote>
-<h3 id="git版本控制流程"><a href="#git版本控制流程" class="headerlink" title="git版本控制流程"></a>git版本控制流程</h3></blockquote>
+<p>git版本控制流程</p>
+</blockquote>
 <p><strong>本地建仓库 → 托管到远端</strong></p>
-<ul>
-<li>创建一个空项目 → 获取url </li>
-<li>mkdir [dir]    创建一个新的文件夹</li>
-<li>cd [dir]   切换到文件夹下</li>
-<li>git init   初始化</li>
-<li>添加文件到新创建的文件夹下</li>
-<li>git add .  将文件放入暂存区</li>
-<li>get status   查看放在暂存区的文件状态 </li>
-<li>git commit -m  ‘说明’   将文件放到仓库</li>
-<li>git reflog git remote add origin \&lt;url>   连接接到远端仓库 </li>
-<li>git push [-u] origin master   将本地仓库与远端仓库origin别名对应 第一次提交代码需要输入 -u </li>
-<li>git pull  获取服务器更新的代码                                                           </li>
-</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">- 创建一个空项目 → 获取url </span><br><span class="line">- mkdir [dir]    创建一个新的文件夹</span><br><span class="line">- cd [dir]   切换到文件夹下</span><br><span class="line">- git init   初始化</span><br><span class="line">- 添加文件到新创建的文件夹下</span><br><span class="line">- git add .  将文件放入暂存区</span><br><span class="line">- get status   查看放在暂存区的文件状态 </span><br><span class="line">- git commit -m  '说明'   将文件放到仓库</span><br><span class="line">- git reflog git remote add origin \&lt;url\&gt;   连接接到远端仓库 </span><br><span class="line">- git push [-u] origin master   将本地仓库与远端仓库origin别名对应 第一次提交代码需要输入 -u </span><br><span class="line">- git pull  获取服务器更新的代码</span><br></pre></td></tr></table></figure>
 <p><strong>远端服务器项目已存在</strong></p>
-<ul>
-<li>git clone [url]   下载远端服务器上的文件</li>
-<li>cd [dir]   切换到文件夹下</li>
-<li>git branch [分支file]   创建分支名 </li>
-<li>git branch   查看分支</li>
-<li>git checkout [分支file]   切换到分支</li>
-<li>更新 / 添加 / 删除内容</li>
-<li>git add .   将文件放到暂存区</li>
-<li>git commit -m ‘说明’   将文件提交仓库</li>
-<li>git push origin [分支file]   将文件推送到远端服务器分支</li>
-<li>get checkout master    切回到master </li>
-<li>git merge [分支file]    将分支合并到master </li>
-<li>git push origin master  将本地项目推送到服务器</li>
-</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">- git clone [url]   下载远端服务器上的文件</span><br><span class="line">- cd [dir]   切换到文件夹下</span><br><span class="line">- git branch [分支file]   创建分支名 </span><br><span class="line">- git branch   查看分支</span><br><span class="line">- git checkout [分支file]   切换到分支</span><br><span class="line">- 更新 / 添加 / 删除内容</span><br><span class="line">- git add .   将文件放到暂存区</span><br><span class="line">- git commit -m '说明'   将文件提交仓库</span><br><span class="line">- git push origin [分支file]   将文件推送到远端服务器分支</span><br><span class="line">- get checkout master    切回到master </span><br><span class="line">- git merge [分支file]    将分支合并到master </span><br><span class="line">- git push origin master  将本地项目推送到服务器</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -260,12 +236,7 @@
 
     <div id="comments">
         
-	<!--PC和WAP自适应版-->
-<div id="SOHUCS"></div>
-<script type="text/javascript">
-	(function(){var appid='cyt8KmUC1';var conf='prod_855a68d3b3d91855360a6215672a505a';var width=window.innerWidth||document.documentElement.clientWidth;if(width<960){window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id='+appid+'&conf='+conf+'"><\/script>');}else{var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}
-	c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})});}})();
-</script>	
+   <p>评论系统未开启，无法评论！</p>
 
     </div>
 
