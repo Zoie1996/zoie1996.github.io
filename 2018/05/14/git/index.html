@@ -29,7 +29,7 @@
     <!--Title-->
 
 
-<title>标签: 打印月历 | Zoie</title>
+<title>Shell常用命令 | Zoie</title>
 
 
     <link rel="alternate" href="/atom.xml" title="Zoie" type="application/atom+xml">
@@ -120,38 +120,154 @@
     <section class="content-wrap">
         <div class="container">
             <div class="row">
-                <main class="col-md-8 main-content ">
-                    <h3> 
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Shell常用命令">
+            
+	            Shell常用命令
+            
+        </h1>
+        <div class="post-meta">
     
-        打印月历 
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a href="/categories/Linux">
+            Linux
+        </a>
+    </span>
     
     
-</h3>
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+                
+                    <a href="/tags/Git" title='Git'>
+                        Git
+                    </a>
+                
+            
+        </span>
+    </span>
+    
 
-    <article class="post">
+    
         
-        <div class="post-content">
-            <div class="post-head home-post-head">
-                <h1 class="post-title"> 
-                    <a href="/2018/05/15/print_cal/">Python3 - 打印月历</a>
-                </h1>
-                <div class="post-meta">  &bull;
-                    <time class="post-date" datetime="" title="">
-                        2018年05月14日
-                    </time>
-                </div>
-            </div>
-            <p class="brief">
-                
-                    Python封装了许多强大的模块, 通过调用模块, 可以让复杂的代码简单化, 今天我们来介绍两种打印月历的方法                                   
-​     ...
-                
-            </p> 
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2018/05/14</span>
+        </span>
+    
+</div>
+
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h3 id="Git的基本常用命令-入门级"><a href="#Git的基本常用命令-入门级" class="headerlink" title="Git的基本常用命令(入门级)"></a>Git的基本常用命令(入门级)</h3><blockquote>
+<p>###基本命令</p>
+</blockquote>
+<ul>
+<li><p>git –version   查看git版本 </p>
+</li>
+<li><p>git config –global user.name ‘xxx’    配置用户名</p>
+</li>
+<li><p>git config –global user.email <a href="mailto:&#39;xxx@xxx.com" target="_blank" rel="noopener">&#39;xxx@xxx.com</a>‘    配置用户邮箱</p>
+</li>
+<li><p>git init   初始化</p>
+</li>
+<li><p>git add [file]   把文件添加到版本控制</p>
+</li>
+<li><p>get add .   把当前路径下所有文件纳入暂存区</p>
+</li>
+<li><p>git commit -m ‘说明’   将文件放入仓库</p>
+</li>
+<li><p>git status   查看放在暂存区的文件状态</p>
+</li>
+<li><p>git checkout –    撤回所有暂存区文件 </p>
+</li>
+<li><p>git checkout – [file]   撤回暂存区文件</p>
+</li>
+<li><p>git log   查看历史版本 </p>
+</li>
+<li><p>git log –pretty=oneline   单行显示历史版本</p>
+</li>
+<li><p>get reflog   查看版本包括’’未来’’版本 </p>
+</li>
+<li><p>git reset –hard [版本代号前6位]   返回任何一个版本<br><br></p>
+</li>
+</ul>
+<blockquote>
+<h3 id="git版本控制流程"><a href="#git版本控制流程" class="headerlink" title="git版本控制流程"></a>git版本控制流程</h3></blockquote>
+<p><strong>本地建仓库 → 托管到远端</strong></p>
+<ul>
+<li>创建一个空项目 → 获取url </li>
+<li>mkdir [dir]    创建一个新的文件夹</li>
+<li>cd [dir]   切换到文件夹下</li>
+<li>git init   初始化</li>
+<li>添加文件到新创建的文件夹下</li>
+<li>git add .  将文件放入暂存区</li>
+<li>get status   查看放在暂存区的文件状态 </li>
+<li>git commit -m  ‘说明’   将文件放到仓库</li>
+<li>git reflog git remote add origin \&lt;url>   连接接到远端仓库 </li>
+<li>git push [-u] origin master   将本地仓库与远端仓库origin别名对应 第一次提交代码需要输入 -u </li>
+<li>git pull  获取服务器更新的代码                                                           </li>
+</ul>
+<p><strong>远端服务器项目已存在</strong></p>
+<ul>
+<li>git clone [url]   下载远端服务器上的文件</li>
+<li>cd [dir]   切换到文件夹下</li>
+<li>git branch [分支file]   创建分支名 </li>
+<li>git branch   查看分支</li>
+<li>git checkout [分支file]   切换到分支</li>
+<li>更新 / 添加 / 删除内容</li>
+<li>git add .   将文件放到暂存区</li>
+<li>git commit -m ‘说明’   将文件提交仓库</li>
+<li>git push origin [分支file]   将文件推送到远端服务器分支</li>
+<li>get checkout master    切回到master </li>
+<li>git merge [分支file]    将分支合并到master </li>
+<li>git push origin master  将本地项目推送到服务器</li>
+</ul>
+
+    </div>
+
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="https://zoie1996.github.io/" target="_blank">Zoie</a>
+            
         </div>
-    </article>
- 
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2018/05/14/shell/" class="pre-post btn btn-default" title='Shell常用命令'>
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">Shell常用命令</span>
+        </a>
+    
+    
+</div>
 
 
+    <div id="comments">
+        
+	<!--PC和WAP自适应版-->
+<div id="SOHUCS"></div>
+<script type="text/javascript">
+	(function(){var appid='cyt8KmUC1';var conf='prod_855a68d3b3d91855360a6215672a505a';var width=window.innerWidth||document.documentElement.clientWidth;if(width<960){window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id='+appid+'&conf='+conf+'"><\/script>');}else{var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}
+	c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})});}})();
+</script>	
+
+    </div>
 
 
 
