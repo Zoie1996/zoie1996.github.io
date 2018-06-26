@@ -1,0 +1,386 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="Zoie">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://zoie1996..github.io">
+    <!--SEO-->
+
+
+
+<meta name="keywords" content="IT,技术,博客,Python"/>
+
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+
+<title>Python3 - 三种方式获取网页页面(urllib/xpath/bs4) | Zoie</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="Zoie" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css?rev=3.3.4">
+<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+</head>
+
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header"  style="background-image:url(http://7xpw2b.com1.z0.glb.clouddn.com/hexo-sinppet/img/banner2.jpg)"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='zoie'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                 <img src="/img/branding.png" alt="Snippet 博客主题" class="img-responsive center-block">
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa /favicon.ico"></i>首页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/技术杂谈/"><i class="fa /favicon.ico"></i>技术杂谈</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/生活随笔/"><i class="fa /favicon.ico"></i>生活随笔</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Python3 - 三种方式获取网页页面(urllib/xpath/bs4)">
+            
+	            Python3 - 三种方式获取网页页面(urllib/xpath/bs4)
+            
+        </h1>
+        <div class="post-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a href="/categories/Python3">
+            Python3
+        </a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+                
+                    <a href="/tags/spider" title='spider'>
+                        spider
+                    </a>
+                
+            
+        </span>
+    </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2018/06/26</span>
+        </span>
+    
+</div>
+
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h3 id="1-urllib"><a href="#1-urllib" class="headerlink" title="1. urllib"></a>1. urllib</h3><h4 id="1-1-使用urllib进行编码和解码"><a href="#1-1-使用urllib进行编码和解码" class="headerlink" title="1.1 使用urllib进行编码和解码"></a>1.1 使用urllib进行编码和解码</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> urllib <span class="keyword">import</span> parse</span><br><span class="line"></span><br><span class="line"><span class="comment"># 编码</span></span><br><span class="line">enstr = parse.urlencode(&#123;<span class="string">'kd'</span>: <span class="string">'千峰'</span>&#125;)</span><br><span class="line"><span class="comment"># 打印的结果为 kd=%E5%8D%83%E5%B3%B0</span></span><br><span class="line">print(enstr)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解码</span></span><br><span class="line">destr = parse.unquote(enstr)</span><br><span class="line"><span class="comment"># 解码的结果为 kd=千峰</span></span><br><span class="line">print(destr)</span><br></pre></td></tr></table></figure>
+<h4 id="1-2-简单案列–百度搜索"><a href="#1-2-简单案列–百度搜索" class="headerlink" title="1.2 简单案列–百度搜索"></a>1.2 简单案列–百度搜索</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> ssl</span><br><span class="line"><span class="keyword">import</span> urllib.request</span><br><span class="line"><span class="keyword">from</span> urllib <span class="keyword">import</span> parse</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">(url)</span>:</span></span><br><span class="line">    header = &#123;</span><br><span class="line">        <span class="comment"># 请求头</span></span><br><span class="line">        <span class="string">'User-Agent'</span>: <span class="string">'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36'</span></span><br><span class="line">,</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment"># 关闭证书验证</span></span><br><span class="line">    context = ssl._create_unverified_context()</span><br><span class="line">    req = urllib.request.Request(url, headers=header)</span><br><span class="line">    res = urllib.request.urlopen(req, context=context)</span><br><span class="line">    <span class="keyword">return</span> res.read().decode(<span class="string">'utf-8'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    msg = input(<span class="string">'请输入搜索信息:'</span>)</span><br><span class="line">    search = parse.urlencode(&#123;<span class="string">'wd'</span>: msg&#125;)</span><br><span class="line">    url = <span class="string">'https://www.baidu.com/s?%s'</span> % search</span><br><span class="line">    result = main(url)</span><br></pre></td></tr></table></figure>
+<p>运行结果:</p>
+<p><img src="../images/baidu_index.png" alt="img/baidu"></p>
+<h3 id="2-XPATH"><a href="#2-XPATH" class="headerlink" title="2. XPATH"></a>2. XPATH</h3><h4 id="2-1-Xpath基本用法"><a href="#2-1-Xpath基本用法" class="headerlink" title="2.1 Xpath基本用法"></a>2.1 Xpath基本用法</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># lxml 需要使用 pip install lxml安装后才能导入</span></span><br><span class="line"><span class="keyword">from</span> lxml <span class="keyword">import</span> etree</span><br><span class="line"></span><br><span class="line">html = <span class="string">'''</span></span><br><span class="line"><span class="string">	&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="string">	&lt;html lang="en"&gt;</span></span><br><span class="line"><span class="string">	&lt;head&gt;</span></span><br><span class="line"><span class="string">	    &lt;meta charset="UTF-8"&gt;</span></span><br><span class="line"><span class="string">	    &lt;title&gt;Title&lt;/title&gt;</span></span><br><span class="line"><span class="string">	&lt;/head&gt;</span></span><br><span class="line"><span class="string">	&lt;body&gt;</span></span><br><span class="line"><span class="string">	    &lt;div&gt;</span></span><br><span class="line"><span class="string">	        &lt;ul&gt;</span></span><br><span class="line"><span class="string">	            &lt;li class="class1"&gt;&lt;a href="class1.html"&gt;1&lt;/a&gt;&lt;/li&gt;</span></span><br><span class="line"><span class="string">	            &lt;li class="class2"&gt;&lt;a href="class2.html"&gt;2&lt;/a&gt;&lt;/li&gt;</span></span><br><span class="line"><span class="string">	            &lt;li class="class3"&gt;&lt;a href="class3.html"&gt;3&lt;/a&gt;&lt;/li&gt;</span></span><br><span class="line"><span class="string">	            &lt;li class="class4"&gt;&lt;a href="class4.html"&gt;4&lt;/a&gt;&lt;/li&gt;</span></span><br><span class="line"><span class="string">	            &lt;li class="class5"&gt;&lt;a href="class5.html"&gt;5&lt;/a&gt;&lt;/li&gt;</span></span><br><span class="line"><span class="string">	            &lt;li&gt;</span></span><br><span class="line"><span class="string">	                &lt;ul class="class1"&gt;</span></span><br><span class="line"><span class="string">	                    &lt;li class="class1"&gt;&lt;a href="class6.html"&gt;6&lt;/a&gt;&lt;/li&gt;</span></span><br><span class="line"><span class="string">	                    &lt;li class="class7"&gt;&lt;a href="class7.html"&gt;7&lt;/a&gt;&lt;/li&gt;</span></span><br><span class="line"><span class="string">	                    &lt;li class="class8"&gt;&lt;a href="class8.html"&gt;8&lt;/a&gt;&lt;/li&gt;</span></span><br><span class="line"><span class="string">	                &lt;/ul&gt;</span></span><br><span class="line"><span class="string">	            &lt;/li&gt;</span></span><br><span class="line"><span class="string">	        &lt;/ul&gt;</span></span><br><span class="line"><span class="string">	    &lt;div&gt;</span></span><br><span class="line"><span class="string">	&lt;/body&gt;</span></span><br><span class="line"><span class="string">	&lt;/html&gt;</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 解析html结构</span></span><br><span class="line">html = etree.HTML(html)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取根节点</span></span><br><span class="line">a = html.xpath(<span class="string">'/html/body'</span>)</span><br><span class="line"><span class="comment"># 获取body</span></span><br><span class="line">a = html.xpath(<span class="string">'/html/body'</span>)</span><br><span class="line">print(a)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取当前节点</span></span><br><span class="line">a1 = html.xpath(<span class="string">'//ul'</span>)</span><br><span class="line">print(a1)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取当前节点</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> a1:</span><br><span class="line">    print(i.xpath(<span class="string">'.'</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取当前节点下一个节点</span></span><br><span class="line">a2 = a1[<span class="number">0</span>]</span><br><span class="line">print(a2.xpath(<span class="string">'./li[1]'</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取当前第一个节点的父节点</span></span><br><span class="line">a2 = a1[<span class="number">0</span>]</span><br><span class="line">a3 = a2.xpath(<span class="string">'..'</span>)</span><br><span class="line">print(a3)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 选择属性,获取ul下的li的类定义为class1的信息</span></span><br><span class="line">a4 = html.xpath(<span class="string">'//ul/li[@class="class1"]'</span>)</span><br><span class="line">print(a4)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取全局的div下的全局的ul</span></span><br><span class="line">a5 = html.xpath(<span class="string">'//div//ul'</span>)</span><br><span class="line">print(a5)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取任意节点下的class为class1的元素</span></span><br><span class="line">a6 = html.xpath(<span class="string">'//*[@class="class1"]'</span>)</span><br><span class="line">print(a6)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取ul节点下的第一个元素</span></span><br><span class="line">a7 = html.xpath(<span class="string">'//ul/li[1]'</span>)</span><br><span class="line">print(a7)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取div下第一个ul元素</span></span><br><span class="line">a8 = html.xpath(<span class="string">'//div/ul[1]'</span>)</span><br><span class="line">print(a8)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取ul标签下的li标签中a的值</span></span><br><span class="line">a9 = html.xpath(<span class="string">'//ul/li/a'</span>)</span><br><span class="line"><span class="keyword">for</span> a <span class="keyword">in</span> a9:</span><br><span class="line">    print(a.xpath(<span class="string">'./text()'</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取li标签下a的href属性</span></span><br><span class="line"><span class="keyword">for</span> li <span class="keyword">in</span> a9:</span><br><span class="line">    print(li.xpath(<span class="string">'./@href'</span>))</span><br></pre></td></tr></table></figure>
+<h4 id="2-2-简单案列"><a href="#2-2-简单案列" class="headerlink" title="2.2 简单案列"></a>2.2 简单案列</h4><p>使用正则/Xpath获取搜狐体育新闻标题及内容, 并存储至数据库</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install pymysql</span><br><span class="line">pip install lxml</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> ssl</span><br><span class="line"><span class="keyword">import</span> urllib.request</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> pymysql <span class="keyword">as</span> pymysql</span><br><span class="line"><span class="keyword">from</span> lxml <span class="keyword">import</span> etree</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">decode_html</span><span class="params">(html, charsets=<span class="params">(<span class="string">'UTF-8'</span>,<span class="string">'GBK'</span>)</span>)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    解码页面</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    page_html = <span class="string">''</span></span><br><span class="line">    <span class="keyword">for</span> charset <span class="keyword">in</span> charsets:</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            page_html = html.decode(charset)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">            <span class="keyword">pass</span></span><br><span class="line">            <span class="comment"># print('编码错误')</span></span><br><span class="line">    <span class="keyword">return</span> page_html</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_html_response</span><span class="params">(url)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    获取页面响应信息</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    headers = &#123;</span><br><span class="line">        <span class="string">'User-Agent'</span>: <span class="string">'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36'</span>,</span><br><span class="line">    &#125;</span><br><span class="line">    context = ssl._create_unverified_context()</span><br><span class="line">    request = urllib.request.Request(url, headers=headers)</span><br><span class="line">    response = urllib.request.urlopen(request, context=context)</span><br><span class="line">    <span class="keyword">return</span> decode_html(response.read())</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">pattern_regex</span><span class="params">(html, parrent, flags=re.S)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    定义正则配方法</span></span><br><span class="line"><span class="string">    :param html: 请求的页面</span></span><br><span class="line"><span class="string">    :param parrent: 正则表达式</span></span><br><span class="line"><span class="string">    :param flags: 标志</span></span><br><span class="line"><span class="string">    :return: 匹配结果(列表形式)</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    parrent = re.compile(parrent, flags)</span><br><span class="line">    result = re.findall(parrent, html)</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_mysql</span><span class="params">(sql, params_list)</span>:</span></span><br><span class="line">	<span class="string">"""</span></span><br><span class="line"><span class="string">	连接数据库</span></span><br><span class="line"><span class="string">	:param sql: sql插入语句</span></span><br><span class="line"><span class="string">	:param params_list: 存储至数据库的字段的值</span></span><br><span class="line"><span class="string">	"""</span></span><br><span class="line">    <span class="comment"># 数据库连接</span></span><br><span class="line">    conn = pymysql.Connect(host=<span class="string">'localhost'</span>, port=<span class="number">3306</span>, user=<span class="string">'root'</span>,</span><br><span class="line">                           password=<span class="string">'root'</span>, database=<span class="string">'spider'</span>, charset=<span class="string">'utf8'</span>)</span><br><span class="line">    <span class="comment"># 创建游标</span></span><br><span class="line">    <span class="keyword">with</span> conn.cursor() <span class="keyword">as</span> cursor:</span><br><span class="line">        <span class="comment"># 将数据保存到数据库</span></span><br><span class="line">        cursor.executemany(sql, params_list)</span><br><span class="line">        <span class="comment"># 提交事务</span></span><br><span class="line">        conn.commit()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">start_crawl</span><span class="params">(url)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    使用正则获取网页信息</span></span><br><span class="line"><span class="string">    :param url: 请求网页的网址</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="comment"># 获取首页页面</span></span><br><span class="line">    html = get_html_response(url)</span><br><span class="line">    <span class="comment"># 获取首页标题链接</span></span><br><span class="line">    link_list = pattern_regex(html, <span class="string">"&lt;a test=a href='(.*?)' target='_blank'&gt;.*?"</span>)</span><br><span class="line"></span><br><span class="line">    params_list = []</span><br><span class="line">    <span class="keyword">for</span> link_url <span class="keyword">in</span> link_list:</span><br><span class="line">        <span class="comment"># 获取详情页页面</span></span><br><span class="line">        html = get_html_response(link_url)</span><br><span class="line">        <span class="comment"># 获取详情页标题</span></span><br><span class="line">        title = pattern_regex(html, <span class="string">'&lt;h1&gt;(.*?)&lt;span.*?&lt;/h1&gt;'</span>)</span><br><span class="line">        <span class="comment"># 获取详情页内容</span></span><br><span class="line">        content = pattern_regex(html, <span class="string">'&lt;article class="article" id="mp-editor"&gt;(.*?)&lt;/article&gt;'</span>)</span><br><span class="line">        <span class="keyword">if</span> title:</span><br><span class="line">            <span class="comment"># 将标题和内容存入列表中</span></span><br><span class="line">            params_list.append([title[<span class="number">0</span>], content[<span class="number">0</span>]])</span><br><span class="line">    sql = <span class="string">'insert into sohu(title,content) values(%s, %s) '</span></span><br><span class="line">    get_mysql(sql, params_list)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">start_crawl_xpath</span><span class="params">(url)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    使用Xpath获取网页信息</span></span><br><span class="line"><span class="string">    :param url: 请求网页的链接</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    html = etree.HTML(get_html_response(url))</span><br><span class="line">    <span class="comment"># 获取标题列表</span></span><br><span class="line">    li_list = html.xpath(<span class="string">'/html/body/div[1]/div[4]/div[1]/div[1]/ul/li'</span>)</span><br><span class="line">    params_list = []</span><br><span class="line">    <span class="keyword">for</span> li <span class="keyword">in</span> li_list:</span><br><span class="line">        <span class="comment"># 获取每个li标签下的a标签的href属性值</span></span><br><span class="line">        a_link = li.xpath(<span class="string">'./a/@href'</span>)</span><br><span class="line">        <span class="keyword">if</span> a_link:</span><br><span class="line">            <span class="comment"># 获取详情页面</span></span><br><span class="line">            content_html = etree.HTML(get_html_response(a_link[<span class="number">0</span>]))</span><br><span class="line">            title = content_html.xpath(<span class="string">'//*[@id="article-container"]/div[2]/div[1]/div[1]/h1/text()'</span>)</span><br><span class="line">            content = content_html.xpath(<span class="string">'//*[@id="mp-editor"]/p/text()'</span>)</span><br><span class="line">            <span class="keyword">if</span> title:</span><br><span class="line">                params_list.append([title[<span class="number">0</span>], content[<span class="number">0</span>]])</span><br><span class="line">    sql = <span class="string">'insert into sohu(title,content) values(%s, %s) '</span></span><br><span class="line">    get_mysql(sql, params_list)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    url = <span class="string">'http://sports.sohu.com/nba_a.shtml'</span></span><br><span class="line">    <span class="comment"># start_crawl(url)</span></span><br><span class="line">    start_crawl_xpath(url)</span><br></pre></td></tr></table></figure>
+<p>运行结果:</p>
+<p><img src="../images/sports_content.png" alt="img/sport_content.png"></p>
+<h3 id="3-BeautifulSoup"><a href="#3-BeautifulSoup" class="headerlink" title="3. BeautifulSoup"></a>3. BeautifulSoup</h3><p>####3.1 爬取知乎问题页面</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install bs4</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">start_crawl</span><span class="params">(url)</span>:</span></span><br><span class="line">    headers = &#123;</span><br><span class="line">        <span class="string">'User-Agent'</span>: random.choice(user_agents.agents),</span><br><span class="line">    &#125;</span><br><span class="line">    request = requests.get(url, headers=headers)</span><br><span class="line">    <span class="comment"># 使用bs4解析页面</span></span><br><span class="line">    soup = BeautifulSoup(request.text, <span class="string">'lxml'</span>)</span><br><span class="line">    result = soup.find_all(<span class="string">'a'</span>, <span class="string">'question_link'</span>)</span><br><span class="line">    <span class="comment"># print(result)</span></span><br><span class="line">    question_list = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> result:</span><br><span class="line">        question_list.append([i.text.replace(<span class="string">'\n'</span>, <span class="string">''</span>), i.attrs[<span class="string">'href'</span>]])</span><br><span class="line">    print(<span class="string">'知乎发现页面有%s提问'</span> % len(result))</span><br><span class="line">    print(question_list)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    url = <span class="string">'https://www.zhihu.com/explore'</span></span><br><span class="line">    start_crawl(url)</span><br></pre></td></tr></table></figure>
+<p>运行结果:</p>
+<p><img src="../images/zhihu_question.png" alt="img/sport_content.png"></p>
+<h4 id="3-2-获取豆瓣电影评分"><a href="#3-2-获取豆瓣电影评分" class="headerlink" title="3.2 获取豆瓣电影评分"></a>3.2 获取豆瓣电影评分</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">from</span> urllib <span class="keyword">import</span> parse</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> user_agents</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_response</span><span class="params">(url)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    第一步</span></span><br><span class="line"><span class="string">    :param url: 查询的链接</span></span><br><span class="line"><span class="string">    获取网页响应信息</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    headers = &#123;</span><br><span class="line">        <span class="string">'User-Agent'</span>: <span class="string">'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36'</span>,</span><br><span class="line">        <span class="string">'Referer'</span>: <span class="string">'https://movie.douban.com/'</span></span><br><span class="line">    &#125;</span><br><span class="line">    resp = requests.get(url, headers=headers)</span><br><span class="line">    <span class="comment"># resp.json() 返回ajax加载的json数据</span></span><br><span class="line">    <span class="keyword">return</span> resp.json()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_tags</span><span class="params">(url)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    第二步</span></span><br><span class="line"><span class="string">    获取电影分类标签</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    resp = get_response(url)</span><br><span class="line">    tags = resp[<span class="string">'tags'</span>]</span><br><span class="line">    <span class="keyword">return</span> tags</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_result</span><span class="params">(url, tag)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    第三步</span></span><br><span class="line"><span class="string">    通过分类标签获取分类下的电影名称及评分</span></span><br><span class="line"><span class="string">    :param url: 请求的链接</span></span><br><span class="line"><span class="string">    :param tag: 分类标签</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    resp = get_response(url)</span><br><span class="line">    result_list = resp[<span class="string">'subjects'</span>]</span><br><span class="line">    results = <span class="string">''</span></span><br><span class="line">    <span class="keyword">for</span> result <span class="keyword">in</span> result_list:</span><br><span class="line">        results += <span class="string">'%s电影: %s  评分:%s \n'</span> % (tag, result[<span class="string">'title'</span>], result[<span class="string">'rate'</span>])</span><br><span class="line">    <span class="keyword">return</span> results</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">save_result</span><span class="params">(result)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    第四步</span></span><br><span class="line"><span class="string">    保存信息</span></span><br><span class="line"><span class="string">    :param result: 查询结果</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">with</span> open(<span class="string">'电影.txt'</span>, <span class="string">'a'</span>, encoding=<span class="string">'utf-8'</span>) <span class="keyword">as</span> f:</span><br><span class="line">        f.write(result + <span class="string">'\n\n'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment"># 分类标签链接</span></span><br><span class="line">    tag_url = <span class="string">'https://movie.douban.com/j/search_tags?type=movie&amp;tag=%E7%83%AD%E9%97%A8&amp;source='</span></span><br><span class="line">    tags = get_tags(tag_url)</span><br><span class="line">    <span class="keyword">for</span> tag <span class="keyword">in</span> tags:</span><br><span class="line">        <span class="comment"># 通过标签组装查询的链接</span></span><br><span class="line">        search = parse.urlencode(&#123;<span class="string">'tag'</span>: tag&#125;)</span><br><span class="line">        result_url = <span class="string">'https://movie.douban.com/j/search_subjects?type=movie&amp;%s&amp;sort=recommend&amp;page_limit=20&amp;page_start=0'</span> % search</span><br><span class="line">        results = get_result(result_url, tag)</span><br><span class="line">        save_result(results)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<p>运行结果:</p>
+<p><img src="../images/douban_movie.png" alt=""></p>
+
+    </div>
+
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="https://zoie1996.github.io/" target="_blank">Zoie</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2018/05/27/python_string/" class="next-post btn btn-default" title='Python3 - 常见字符串函数'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">Python3 - 常见字符串函数</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+   <p>评论系统未开启，无法评论！</p>
+
+    </div>
+
+
+
+
+
+                </main>
+                
+    <aside class="col-md-4 sidebar">
+        
+        
+    <div class="widget">    
+        <h3 class="title">搜索</h3>
+        <div id="search-form">
+            <div id="result-mask" class="hide"></div>
+            <div class="search-area">
+                
+                    <input id="search-key" type="search" autocomplete="off" placeholder="搜点什么呢?">
+                    <button type="button" class="search-form-submit" id="search-local">站内搜索</button>
+                
+                
+            </div>
+            <div id="result-wrap" class="hide">
+                <div id="search-result"></div>
+            </div>
+            <div class="hide">
+                <template id="search-tpl">
+                    <div class="item">
+                        <a href="/{path}" title="{title}">
+                            <div class="title">{title}</div>
+                            <div class="content">{content}</div>
+                        </a>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </div>
+
+        
+        
+    <div class="widget notification">
+        <h3 class="title">网站公告</h3>
+        <div>
+            <!-- <p>主题Snippet v1.2.0版本已经上线！欢迎更新~ <br/>
+主题下载：<a href="https://github.com/shenliyang/hexo-theme-snippet" title="fork me" target="_blank">Snippet主题</a> <br/>
+<hr/>接受贡献，包括不限于提交问题与需求，修复代码。欢迎Pull Request<br/>支持主题：<a href="https://github.com/shenliyang/hexo-theme-snippet/stargazers">Star一下</a>
+</p> -->
+暂无
+        </div>
+    </div>
+
+        
+        
+    <div class="widget">
+      <h3 class="title">社交</h3> 
+        <div class="content social">
+            
+	            <a href="//github.com/Zoie1996" rel="external nofollow" title="Github" target="_blank">
+			    	<i class="git fa fa-git"></i>
+			    </a>
+            
+	            <a href="mailto:zoie1996@163.com" rel="external nofollow" title="邮箱" target="_blank">
+			    	<i class="envelope-o fa fa-envelope-o"></i>
+			    </a>
+            
+	            <a href="/" rel="external nofollow" title="联系QQ" target="_blank">
+			    	<i class="qq fa fa-qq"></i>
+			    </a>
+            
+	            <a href="/" rel="external nofollow" title="微博" target="_blank">
+			    	<i class="weibo fa fa-weibo"></i>
+			    </a>
+            
+	            <a href="/" rel="external nofollow" title="QQ群" target="_blank">
+			    	<i class="users fa fa-users"></i>
+			    </a>
+            
+        </div>
+    </div>
+
+
+        
+        
+    <div class="widget">
+        <h3 class="title">分类</h3>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link current" href="/categories/Django/"><i class="fa" aria-hidden="true">Django</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/"><i class="fa" aria-hidden="true">Linux</i></a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python3/"><i class="fa" aria-hidden="true">Python3</i></a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python3基础/"><i class="fa" aria-hidden="true">Python3基础</i></a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/"><i class="fa" aria-hidden="true">数据库</i></a><span class="category-list-count">2</span></li></ul>
+    </div>
+
+
+        
+        
+    <div class="widget">
+      <h3 class="title">归档</h3>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/"><i class="fa" aria-hidden="true">六月 2018</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/"><i class="fa" aria-hidden="true">五月 2018</i></a><span class="archive-list-count">14</span></li></ul>
+    </div>
+
+
+        
+        
+  <div class="widget">
+    <h3 class="title">标签云</h3>
+    <div class="content tag-cloud">
+        <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/HTTP状态返回码/" style="font-size: 10px;">HTTP状态返回码</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/MySQL注入式攻击/" style="font-size: 10px;">MySQL注入式攻击</a> <a href="/tags/PyCharm快捷键/" style="font-size: 20px;">PyCharm快捷键</a> <a href="/tags/Shell/" style="font-size: 10px;">Shell</a> <a href="/tags/firewalld/" style="font-size: 10px;">firewalld</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/spider/" style="font-size: 10px;">spider</a> <a href="/tags/str函数/" style="font-size: 10px;">str函数</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a> <a href="/tags/分支/" style="font-size: 10px;">分支</a> <a href="/tags/创建项目/" style="font-size: 10px;">创建项目</a> <a href="/tags/循环/" style="font-size: 10px;">循环</a> <a href="/tags/打印月历/" style="font-size: 10px;">打印月历</a> <a href="/tags/标签/" style="font-size: 10px;">标签</a> <a href="/tags/递归/" style="font-size: 10px;">递归</a> <a href="/tags/遍历目录/" style="font-size: 10px;">遍历目录</a>
+    </div>
+  </div>
+
+
+        
+        
+    <div class="widget">
+        <h3 class="title">友链</h3>
+        <div class="content friends-link">
+        
+            <a href="https://gavinliu4011.github.io/" class="fa" target="_blank">GavinLiu</a>
+        
+            <a href="https://my.csdn.net/jackfrued" class="fa" target="_blank">jackfrued</a>
+        
+        </div>
+    </div>
+
+
+        
+    </aside>
+
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12"> 
+                <span>Copyright &copy; 2017
+                </span> | 
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> | 
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+	<script src="/js/search.js?rev=@@hash"></script>
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+
+</body>
+</html>
