@@ -1,0 +1,660 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="Zoie">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://zoie1996..github.io">
+    <!--SEO-->
+
+
+
+<meta name="keywords" content="IT,技术,博客,Python"/>
+
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+
+<title>Python3 -  Mongodb | Zoie</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="Zoie" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css?rev=3.3.4">
+<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+</head>
+
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header"  style="background-image:url(http://7xpw2b.com1.z0.glb.clouddn.com/hexo-sinppet/img/banner2.jpg)"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='zoie'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                 <img src="/img/branding.png" alt="Snippet 博客主题" class="img-responsive center-block">
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa /favicon.ico"></i>首页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/技术杂谈/"><i class="fa /favicon.ico"></i>技术杂谈</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/生活随笔/"><i class="fa /favicon.ico"></i>生活随笔</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Python3 -  Mongodb">
+            
+	            Python3 -  Mongodb
+            
+        </h1>
+        <div class="post-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a href="/categories/Python3">
+            Python3
+        </a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+                
+                    <a href="/tags/数据库" title='数据库'>
+                        数据库
+                    </a>
+                
+            
+        </span>
+    </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2018/05/27</span>
+        </span>
+    
+</div>
+
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h3 id="1-Mongodb的安装"><a href="#1-Mongodb的安装" class="headerlink" title="1. Mongodb的安装"></a>1. Mongodb的安装</h3><h4 id="1-相关链接"><a href="#1-相关链接" class="headerlink" title="1. 相关链接"></a>1. 相关链接</h4><ul>
+<li>官方网站：<a href="https://www.mongodb.com/" target="_blank" rel="noopener">https://www.mongodb.com</a></li>
+<li>官方文档：<a href="https://docs.mongodb.com/" target="_blank" rel="noopener">https://docs.mongodb.com</a></li>
+<li>GitHub：<a href="https://github.com/mongodb" target="_blank" rel="noopener">https://github.com/mongodb</a></li>
+<li>中文教程：<a href="http://www.runoob.com/mongodb/mongodb-tutorial.html" target="_blank" rel="noopener">http://www.runoob.com/mongodb/mongodb-tutorial.html</a></li>
+</ul>
+<p>####2. <a href="https://germey.gitbooks.io/python3webspider/1.4.2-MongoDB%E7%9A%84%E5%AE%89%E8%A3%85.html" target="_blank" rel="noopener">windows下安装</a></p>
+<h4 id="3-Linux下安装"><a href="#3-Linux下安装" class="headerlink" title="3. Linux下安装"></a>3. Linux下安装</h4><p><strong>3.1 wget获取mongodo</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wgwt https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-4.0.0.tgz</span><br></pre></td></tr></table></figure>
+<p><strong>3.2 gunzip解压缩</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gunzip mongodb-linux-x86_64-4.0.0.tar.tgz</span><br></pre></td></tr></table></figure>
+<p><strong>3.3 安装</strong></p>
+<p>解压，并指定安装到刚创建的mongodb-4.0.0中，并去除除第一级的目录结构（–strip-components number参数）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir mongodb-4.0.0</span><br><span class="line"></span><br><span class="line">tar -xvf mongodb-linux-x86_64-amazon-3.6.5.tar --strip-components 1 -C mongodb-4.0.0/</span><br></pre></td></tr></table></figure>
+<p><strong>3.4 设置环境变量, 配置文件, 启动mongod</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export PATH=$PATH:~/mongodb-3.6.5/bin</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">vim mongodb.conf</span><br><span class="line"></span><br><span class="line">dbpath = /home/mongodb/data/db #数据文件存放目录</span><br><span class="line"></span><br><span class="line">logpath = /home/mongodb/logs/mongodb.log #日志文件存放目录</span><br><span class="line">port = 27017  #端口</span><br><span class="line">fork = true  #以守护程序的方式启用，即在后台运行</span><br><span class="line">auth=true</span><br><span class="line">bind_ip=0.0.0.0</span><br></pre></td></tr></table></figure>
+<p>启动mongo命令：mongod -f mongodb.conf</p>
+<p><strong>3.5查看进程</strong></p>
+<p>centos下安装yum install net-tools就可以使用netstat -lntp去查看进程端口等信息了</p>
+<p><strong>注意</strong>:</p>
+<p>如果在配置robomongo的过程中，遇到无法访问，出现’connect：network is unreachable’的提示的话，表示mongo的远程没有开启，或者防火墙的问题。 其次在查看防火墙是否开启，可直接关闭防火墙，再进行链接尝试。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop firewalld.service #停止firewall </span><br><span class="line">systemctl disable firewalld.service #禁止firewall开机启动</span><br></pre></td></tr></table></figure>
+<p>nohttpinterface = true 只用于mongodb-3.3以下版本</p>
+<p>###2. Mongodb的基本命令 </p>
+<p>成功启动MongoDB后，再打开一个命令行窗口输入mongo，就可以进行数据库的一些操作。<br>输入help可以看到基本操作命令：</p>
+<ul>
+<li><p>show dbs:显示数据库列表 </p>
+</li>
+<li><p>show collections：显示当前数据库中的集合（类似关系数据库中的表）  </p>
+</li>
+<li><p>show users：显示用户</p>
+</li>
+<li><p>use \<db name\="">：切换当前数据库，这和MS-SQL里面的意思一样  </db></p>
+</li>
+<li><p>db.help()：显示数据库操作命令，里面有很多的命令  </p>
+</li>
+<li><p>db.foo.help()：显示集合操作命令，同样有很多的命令，foo指的是当前数据库下，一个叫foo的集合，并非真正意义上的命令  </p>
+</li>
+<li><p>db.foo.find()：对于当前数据库中的foo集合进行数据查找（由于没有条件，会列出所有数据）  db.foo.find( { a : 1 } )：对于当前数据库中的foo集合进行查找，条件是数据中有一个属性叫a，且a的值为1</p>
+</li>
+<li><p>MongoDB没有创建数据库的命令，但有类似的命令。</p>
+<p>如：如果你想创建一个“myTest”的数据库，先运行use myTest命令，之后就做一些操作（如：db.createCollection(‘user’)）,这样就可以创建一个名叫“myTest”的数据库。</p>
+</li>
+</ul>
+<h4 id="数据库常用命令"><a href="#数据库常用命令" class="headerlink" title="数据库常用命令"></a>数据库常用命令</h4><p><strong>1、Help查看命令提示</strong></p>
+<p> help<br>    db.help();<br>      db.yourColl.help();<br>      db.youColl.find().help();<br>      rs.help();</p>
+<p><strong>2、切换/创建数据库</strong></p>
+<p> use yourDB;  当创建一个集合(table)的时候会自动创建当前数据库</p>
+<p><strong>3、查询所有数据库</strong></p>
+<p> show dbs;</p>
+<p><strong>4、删除当前使用数据库</strong></p>
+<p> db.dropDatabase();</p>
+<p><strong>5、从指定主机上克隆数据库</strong></p>
+<p> db.cloneDatabase(“127.0.0.1”); 将指定机器上的数据库的数据克隆到当前数据库</p>
+<p><strong>6、从指定的机器上复制指定数据库数据到某个数据库</strong></p>
+<p> db.copyDatabase(“mydb”, “temp”, “127.0.0.1”);将本机的mydb的数据复制到temp数据库中</p>
+<p><strong>7、修复当前数据库</strong></p>
+<p> db.repairDatabase();</p>
+<p><strong>8、查看当前使用的数据库</strong></p>
+<p> db.getName();</p>
+<p> db; db和getName方法是一样的效果，都可以查询当前使用的数据库</p>
+<p><strong>9、显示当前db状态</strong></p>
+<p> db.stats();</p>
+<p><strong>10、当前db版本</strong></p>
+<p> db.version();</p>
+<p><strong>11、查看当前db的链接机器地址</strong></p>
+<p> db.getMongo();</p>
+<p>####Collection聚集集合</p>
+<p><strong>1、创建一个聚集集合（table）</strong></p>
+<p> db.createCollection(“collName”, {size: 20, capped: 5, max: 100});</p>
+<p><strong>2、得到指定名称的聚集集合（table）</strong></p>
+<p> db.getCollection(“account”);</p>
+<p><strong>3、得到当前db的所有聚集集合</strong></p>
+<p> db.getCollectionNames();</p>
+<p><strong>4、显示当前db所有聚集索引的状态</strong></p>
+<p> db.printCollectionStats();</p>
+<p> ####用户相关</p>
+<p><strong>1、添加一个用户</strong></p>
+<p> db.addUser(“name”);</p>
+<p> db.addUser(“userName”, “pwd123”, true); 添加用户、设置密码、是否只读</p>
+<p><strong>2、数据库认证、安全模式</strong></p>
+<p> db.auth(“userName”, “123123”);</p>
+<p><strong>3、显示当前所有用户</strong></p>
+<p> show users;</p>
+<p><strong>4、删除用户</strong></p>
+<p> db.removeUser(“userName”);</p>
+<p>####其他</p>
+<p><strong>1、查询之前的错误信息</strong></p>
+<p> db.getPrevError();</p>
+<p><strong>2、清除错误记录</strong></p>
+<p> db.resetError();</p>
+<p>####查看聚集集合基本信息</p>
+<p>1、查看帮助  db.yourColl.help();</p>
+<p>2、查询当前集合的数据条数  db.yourColl.count();</p>
+<p>3、查看数据空间大小 db.userInfo.dataSize();</p>
+<p>4、得到当前聚集集合所在的db db.userInfo.getDB();</p>
+<p>5、得到当前聚集的状态 db.userInfo.stats();</p>
+<p>6、得到聚集集合总大小 db.userInfo.totalSize();</p>
+<p>7、聚集集合储存空间大小 db.userInfo.storageSize();</p>
+<p>8、Shard版本信息  db.userInfo.getShardVersion()</p>
+<p>9、聚集集合重命名 db.userInfo.renameCollection(“users”); 将userInfo重命名为users</p>
+<p>10、删除当前聚集集合 db.userInfo.drop();</p>
+<p>####聚集集合查询</p>
+<p><strong>1、查询所有记录</strong></p>
+<p>db.userInfo.find();</p>
+<p>相当于：select* from userInfo;</p>
+<p>默认每页显示20条记录，当显示不下的情况下，可以用it迭代命令查询下一页数据。注意：键入it命令不能带“；”</p>
+<p>但是你可以设置每页显示数据的大小，用DBQuery.shellBatchSize= 50;这样每页就显示50条记录了。</p>
+<p><strong>2、查询去掉后的当前聚集集合中的某列的重复数据</strong></p>
+<p>db.userInfo.distinct(“name”);</p>
+<p>会过滤掉name中的相同数据</p>
+<p>相当于：select distict name from userInfo;</p>
+<p><strong>3、查询age = 22的记录</strong></p>
+<p>db.userInfo.find({“age”: 22});</p>
+<p>相当于： select * from userInfo where age = 22;</p>
+<p><strong>4、查询age &gt; 22的记录</strong></p>
+<p>db.userInfo.find({age: {$gt: 22}});</p>
+<p>相当于：select * from userInfo where age &gt;22;</p>
+<p><strong>5、查询age &lt; 22的记录</strong></p>
+<p>db.userInfo.find({age: {$lt: 22}});</p>
+<p>相当于：select * from userInfo where age &lt;22;</p>
+<p><strong>6、查询age &gt;= 25的记录</strong></p>
+<p>db.userInfo.find({age: {$gte: 25}});</p>
+<p>相当于：select * from userInfo where age &gt;= 25;</p>
+<p><strong>7、查询age &lt;= 25的记录</strong></p>
+<p>db.userInfo.find({age: {$lte: 25}});</p>
+<p><strong>8、查询age &gt;= 23 并且 age &lt;= 26</strong></p>
+<p>db.userInfo.find({age: {$gte: 23, $lte: 26}});</p>
+<p><strong>9、查询name中包含 mongo的数据</strong></p>
+<p>db.userInfo.find({name: /mongo/});</p>
+<p>//相当于%%</p>
+<p>select * from userInfo where name like ‘%mongo%’;</p>
+<p><strong>10、查询name中以mongo开头的</strong></p>
+<p>db.userInfo.find({name: /^mongo/});</p>
+<p>select * from userInfo where name like ‘mongo%’;</p>
+<p><strong>11、查询指定列name、age数据</strong></p>
+<p>db.userInfo.find({}, {name: 1, age: 1});</p>
+<p>相当于：select name, age from userInfo;</p>
+<p>当然name也可以用true或false,当用ture的情况下河name:1效果一样，如果用false就是排除name，显示name以外的列信息。</p>
+<p><strong>12、查询指定列name、age数据, age &gt; 25</strong></p>
+<p>db.userInfo.find({age: {$gt: 25}}, {name: 1, age: 1});</p>
+<p>相当于：select name, age from userInfo where age &gt;25;</p>
+<p><strong>13、按照年龄排序</strong></p>
+<p>升序：db.userInfo.find().sort({age: 1});</p>
+<p>降序：db.userInfo.find().sort({age: -1});</p>
+<p><strong>14、查询name = zhangsan, age = 22的数据</strong></p>
+<p>db.userInfo.find({name: ‘zhangsan’, age: 22});</p>
+<p>相当于：select * from userInfo where name = ‘zhangsan’ and age = ‘22’;</p>
+<p><strong>15、查询前5条数据</strong></p>
+<p>db.userInfo.find().limit(5);</p>
+<p>相当于：selecttop 5 * from userInfo;</p>
+<p><strong>16、查询10条以后的数据</strong></p>
+<p>db.userInfo.find().skip(10);</p>
+<p>相当于：select <em> from userInfo where id not in (selecttop 10 </em> from userInfo);</p>
+<p><strong>17、查询在5-10之间的数据</strong></p>
+<p>db.userInfo.find().limit(10).skip(5);</p>
+<p>可用于分页，limit是pageSize，skip是第几页*pageSize</p>
+<p><strong>18、or与 查询</strong></p>
+<p>db.userInfo.find({$or: [{age: 22}, {age: 25}]});</p>
+<p>相当于：select * from userInfo where age = 22 or age = 25;</p>
+<p><strong>19、查询第一条数据</strong></p>
+<p>db.userInfo.findOne();</p>
+<p>相当于：selecttop 1 * from userInfo;</p>
+<p>db.userInfo.find().limit(1);</p>
+<p><strong>20、查询某个结果集的记录条数</strong></p>
+<p>db.userInfo.find({age: {$gte: 25}}).count();</p>
+<p>相当于：select count(*) from userInfo where age &gt;= 20;</p>
+<p><strong>21、按照某列进行排序</strong></p>
+<p>db.userInfo.find({sex: {$exists: true}}).count();</p>
+<p>相当于：select count(sex) from userInfo;</p>
+<p>####索引</p>
+<p><strong>1、创建索引</strong></p>
+<p>db.userInfo.ensureIndex({name: 1});</p>
+<p>db.userInfo.ensureIndex({name: 1, ts: -1});</p>
+<p><strong>2、查询当前聚集集合所有索引</strong></p>
+<p>db.userInfo.getIndexes();</p>
+<p><strong>3、查看总索引记录大小</strong></p>
+<p>db.userInfo.totalIndexSize();</p>
+<p><strong>4、读取当前集合的所有index信息</strong></p>
+<p>db.users.reIndex();</p>
+<p><strong>5、删除指定索引</strong></p>
+<p>db.users.dropIndex(“name_1”);</p>
+<p><strong>6、删除所有索引索引</strong></p>
+<p>db.users.dropIndexes();</p>
+<p>####修改、添加、删除集合数据</p>
+<p><strong>1、添加</strong></p>
+<p>db.users.save({name: ‘zhangsan’, age: 25, sex: true});</p>
+<p>添加的数据的数据列，没有固定，根据添加的数据为准</p>
+<p><strong>2、修改</strong></p>
+<p>db.users.update({age: 25}, {$set: {name: ‘changeName’}}, false, true);</p>
+<p>相当于：update users set name = ‘changeName’ where age = 25;</p>
+<p>db.users.update({name: ‘Lisi’}, {$inc: {age: 50}}, false, true);</p>
+<p>相当于：update users set age = age + 50 where name = ‘Lisi’;</p>
+<p>db.users.update({name: ‘Lisi’}, {$inc: {age: 50}, $set: {name: ‘hoho’}}, false, true);</p>
+<p>相当于：update users set age = age + 50, name = ‘hoho’ where name = ‘Lisi’;</p>
+<p><strong>3、删除</strong></p>
+<p>db.users.remove({age: 132});</p>
+<p><strong>4、查询修改删除</strong></p>
+<p>db.users.findAndModify({<br>    query: {age: {$gte: 25}},<br>    sort: {age: -1},<br>    update: {$set: {name: ‘a2’}, $inc: {age: 2}},<br>    remove: true<br>});</p>
+<p>db.runCommand({ findandmodify : “users”,<br>    query: {age: {$gte: 25}},<br>    sort: {age: -1},<br>    update: {$set: {name: ‘a2’}, $inc: {age: 2}},<br>    remove: true<br>});</p>
+<p><em>update</em> 或 <em>remove</em> 其中一个是必须的参数; 其他参数可选。</p>
+<table>
+<thead>
+<tr>
+<th><strong>参数</strong></th>
+<th><strong>详解</strong></th>
+<th><strong>默认值</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>query</em></td>
+<td>查询过滤条件</td>
+<td>{}</td>
+</tr>
+<tr>
+<td><em>sort</em></td>
+<td>如果多个文档符合查询过滤条件，将以该参数指定的排列方式选择出排在首位的对象，该对象将被操作</td>
+<td>{}</td>
+</tr>
+<tr>
+<td><em>remove</em></td>
+<td>若为true，被选中对象将在返回前被删除</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><em>update</em></td>
+<td>一个 <a href="http://www.mongodb.org/display/DOCS/Updating" target="_blank" rel="noopener">修改器对象</a></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><em>new</em></td>
+<td>若为true，将返回修改后的对象而不是原始对象。在删除操作中，该参数被忽略。</td>
+<td>false</td>
+</tr>
+<tr>
+<td><em>fields</em></td>
+<td>参见<a href="http://www.mongodb.org/display/DOCS/Retrieving+a+Subset+of+Fields" target="_blank" rel="noopener">Retrieving a Subset of Fields</a> (1.5.0+)</td>
+<td>All fields</td>
+</tr>
+<tr>
+<td><em>upsert</em></td>
+<td>创建新对象若查询结果为空。 <a href="http://github.com/mongodb/mongo/blob/master/jstests/find_and_modify4.js" target="_blank" rel="noopener">示例</a> (1.5.4+)</td>
+<td>false</td>
+</tr>
+</tbody>
+</table>
+<p>####语句块操作</p>
+<p><strong>1、简单Hello World</strong><br>print(“Hello World!”);</p>
+<p>这种写法调用了print函数，和直接写入”Hello World!”的效果是一样的；</p>
+<p><strong>2、将一个对象转换成json</strong></p>
+<p>tojson(new Object());</p>
+<p>tojson(new Object(‘a’));</p>
+<p><strong>3、循环添加数据</strong></p>
+<p>> for (var i = 0; i &lt; 30; i++) {<br>… db.users.save({name: “u_” + i, age: 22 + i, sex: i % 2});<br>… };</p>
+<p>这样就循环添加了30条数据，同样也可以省略括号的写法</p>
+<p>> for (var i = 0; i &lt; 30; i++) db.users.save({name: “u_” + i, age: 22 + i, sex: i % 2});</p>
+<p>也是可以的，当你用db.users.find()查询的时候，显示多条数据而无法一页显示的情况下，可以用it查看下一页的信息；</p>
+<p><strong>4、find 游标查询</strong></p>
+<p>>var cursor = db.users.find();</p>
+<p>> while (cursor.hasNext()) {<br>    printjson(cursor.next());<br>}</p>
+<p>这样就查询所有的users信息，同样可以这样写</p>
+<p>var cursor = db.users.find();</p>
+<p>while (cursor.hasNext()) { printjson(cursor.next); }</p>
+<p>同样可以省略{}号</p>
+<p><strong>5、forEach迭代循环</strong></p>
+<p>db.users.find().forEach(printjson);</p>
+<p>forEach中必须传递一个函数来处理每条迭代的数据信息</p>
+<p><strong>6、将find游标当数组处理</strong></p>
+<p>var cursor = db.users.find();</p>
+<p>cursor[4];</p>
+<p>取得下标索引为4的那条数据</p>
+<p>既然可以当做数组处理，那么就可以获得它的长度：cursor.length();或者cursor.count();</p>
+<p>那样我们也可以用循环显示数据</p>
+<p>for (var i = 0, len = c.length(); i &lt; len; i++) printjson(c[i]);</p>
+<p><strong>7、将find游标转换成数组</strong></p>
+<p>> var arr = db.users.find().toArray();</p>
+<p>> printjson(arr[2]);</p>
+<p>用toArray方法将其转换为数组</p>
+<p><strong>8、定制我们自己的查询结果</strong></p>
+<p>只显示age &lt;= 28的并且只显示age这列数据</p>
+<p>db.users.find({age: {$lte: 28}}, {age: 1}).forEach(printjson);</p>
+<p>db.users.find({age: {$lte: 28}}, {age: true}).forEach(printjson);</p>
+<p>排除age的列</p>
+<p>db.users.find({age: {$lte: 28}}, {age: false}).forEach(printjson);</p>
+<p><strong>9、forEach传递函数显示信息</strong><br>db.things.find({x:4}).forEach(function(x) {print(tojson(x));});</p>
+
+    </div>
+
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="https://zoie1996.github.io/" target="_blank">Zoie</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2018/06/27/urllib_xpath_bs4/" class="pre-post btn btn-default" title='Python3 - 三种方式获取网页页面(urllib/xpath/bs4)'>
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">Python3 - 三种方式获取网页页面(urllib/xpath/bs4)</span>
+        </a>
+    
+    
+        <a href="/2018/05/27/python_string/" class="next-post btn btn-default" title='Python3 - 常见字符串函数'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">Python3 - 常见字符串函数</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+   <p>评论系统未开启，无法评论！</p>
+
+    </div>
+
+
+
+
+
+                </main>
+                
+    <aside class="col-md-4 sidebar">
+        
+        
+    <div class="widget">    
+        <h3 class="title">搜索</h3>
+        <div id="search-form">
+            <div id="result-mask" class="hide"></div>
+            <div class="search-area">
+                
+                    <input id="search-key" type="search" autocomplete="off" placeholder="搜点什么呢?">
+                    <button type="button" class="search-form-submit" id="search-local">站内搜索</button>
+                
+                
+            </div>
+            <div id="result-wrap" class="hide">
+                <div id="search-result"></div>
+            </div>
+            <div class="hide">
+                <template id="search-tpl">
+                    <div class="item">
+                        <a href="/{path}" title="{title}">
+                            <div class="title">{title}</div>
+                            <div class="content">{content}</div>
+                        </a>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </div>
+
+        
+        
+    <div class="widget notification">
+        <h3 class="title">网站公告</h3>
+        <div>
+            <!-- <p>主题Snippet v1.2.0版本已经上线！欢迎更新~ <br/>
+主题下载：<a href="https://github.com/shenliyang/hexo-theme-snippet" title="fork me" target="_blank">Snippet主题</a> <br/>
+<hr/>接受贡献，包括不限于提交问题与需求，修复代码。欢迎Pull Request<br/>支持主题：<a href="https://github.com/shenliyang/hexo-theme-snippet/stargazers">Star一下</a>
+</p> -->
+暂无
+        </div>
+    </div>
+
+        
+        
+    <div class="widget">
+      <h3 class="title">社交</h3> 
+        <div class="content social">
+            
+	            <a href="//github.com/Zoie1996" rel="external nofollow" title="Github" target="_blank">
+			    	<i class="git fa fa-git"></i>
+			    </a>
+            
+	            <a href="mailto:zoie1996@163.com" rel="external nofollow" title="邮箱" target="_blank">
+			    	<i class="envelope-o fa fa-envelope-o"></i>
+			    </a>
+            
+	            <a href="/" rel="external nofollow" title="联系QQ" target="_blank">
+			    	<i class="qq fa fa-qq"></i>
+			    </a>
+            
+	            <a href="/" rel="external nofollow" title="微博" target="_blank">
+			    	<i class="weibo fa fa-weibo"></i>
+			    </a>
+            
+	            <a href="/" rel="external nofollow" title="QQ群" target="_blank">
+			    	<i class="users fa fa-users"></i>
+			    </a>
+            
+        </div>
+    </div>
+
+
+        
+        
+    <div class="widget">
+        <h3 class="title">分类</h3>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Django/"><i class="fa" aria-hidden="true">Django</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/"><i class="fa" aria-hidden="true">Linux</i></a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link current" href="/categories/Python3/"><i class="fa" aria-hidden="true">Python3</i></a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python3基础/"><i class="fa" aria-hidden="true">Python3基础</i></a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/"><i class="fa" aria-hidden="true">数据库</i></a><span class="category-list-count">2</span></li></ul>
+    </div>
+
+
+        
+        
+    <div class="widget">
+      <h3 class="title">归档</h3>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/"><i class="fa" aria-hidden="true">六月 2018</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/"><i class="fa" aria-hidden="true">五月 2018</i></a><span class="archive-list-count">15</span></li></ul>
+    </div>
+
+
+        
+        
+  <div class="widget">
+    <h3 class="title">标签云</h3>
+    <div class="content tag-cloud">
+        <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/HTTP状态返回码/" style="font-size: 10px;">HTTP状态返回码</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/MySQL注入式攻击/" style="font-size: 10px;">MySQL注入式攻击</a> <a href="/tags/PyCharm快捷键/" style="font-size: 20px;">PyCharm快捷键</a> <a href="/tags/Shell/" style="font-size: 10px;">Shell</a> <a href="/tags/firewalld/" style="font-size: 10px;">firewalld</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/spider/" style="font-size: 10px;">spider</a> <a href="/tags/str函数/" style="font-size: 10px;">str函数</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a> <a href="/tags/分支/" style="font-size: 10px;">分支</a> <a href="/tags/创建项目/" style="font-size: 10px;">创建项目</a> <a href="/tags/循环/" style="font-size: 10px;">循环</a> <a href="/tags/打印月历/" style="font-size: 10px;">打印月历</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/标签/" style="font-size: 10px;">标签</a> <a href="/tags/递归/" style="font-size: 10px;">递归</a> <a href="/tags/遍历目录/" style="font-size: 10px;">遍历目录</a>
+    </div>
+  </div>
+
+
+        
+        
+    <div class="widget">
+        <h3 class="title">友链</h3>
+        <div class="content friends-link">
+        
+            <a href="https://gavinliu4011.github.io/" class="fa" target="_blank">GavinLiu</a>
+        
+            <a href="https://my.csdn.net/jackfrued" class="fa" target="_blank">jackfrued</a>
+        
+        </div>
+    </div>
+
+
+        
+    </aside>
+
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12"> 
+                <span>Copyright &copy; 2017
+                </span> | 
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> | 
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+	<script src="/js/search.js?rev=@@hash"></script>
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+
+</body>
+</html>

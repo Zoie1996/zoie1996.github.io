@@ -29,7 +29,7 @@
     <!--Title-->
 
 
-<title>浅谈SQL注入式攻击 | Zoie</title>
+<title>标签: 数据库 | Zoie</title>
 
 
     <link rel="alternate" href="/atom.xml" title="Zoie" type="application/atom+xml">
@@ -120,108 +120,46 @@
     <section class="content-wrap">
         <div class="container">
             <div class="row">
-                <main class="col-md-8 main-content m-post">
-                    <p id="process"></p>
-<article class="post">
-    <div class="post-head">
-        <h1 id="浅谈SQL注入式攻击">
-            
-	            浅谈SQL注入式攻击
-            
-        </h1>
-        <div class="post-meta">
+                <main class="col-md-8 main-content ">
+                    <h3> 
+    
+        数据库 
     
     
-    <span class="categories-meta fa-wrap">
-        <i class="fa fa-folder-open-o"></i>
-        <a href="/categories/数据库">
-            数据库
-        </a>
-    </span>
-    
-    
-    <span class="fa-wrap">
-        <i class="fa fa-tags"></i>
-        <span class="tags-meta">
-            
-                
-                    <a href="/tags/MySQL注入式攻击" title='MySQL注入式攻击'>
-                        MySQL注入式攻击
-                    </a>
-                
-            
-        </span>
-    </span>
-    
+</h3>
 
-    
+    <article class="post">
         
-        <span class="fa-wrap">
-            <i class="fa fa-clock-o"></i>
-            <span class="date-meta">2018/05/17</span>
-        </span>
-    
-</div>
-
-            
-            
-    </div>
-    
-    <div class="post-body post-content">
-        <p>​    </p>
-<p>​     所谓SQL注入式攻击，就是输入域或页面请求的查询字符串，欺骗服务器执行恶意的SQL命令。在某些表单中，用户输入的内容直接用来构造（或者影响）动态SQL命令，或作为存储过程的输入参数，这类表单特别容易受到SQL注入式攻击。   </p>
-<h3 id="下面我们来举一个简单的列子"><a href="#下面我们来举一个简单的列子" class="headerlink" title="下面我们来举一个简单的列子:"></a>下面我们来举一个简单的列子:</h3><p>​    ⑴ 某个Web应用有一个登录页面，这个登录页面控制着用户是否有权访问应用，它要求用户输入一个名称和密码。</p>
-<p>​    ⑵ 登录页面中输入的内容将直接用来构造动态的SQL命令，或者直接用作存储过程的参数。下面是应用构造查询的一个例子：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sql = <span class="string">"select 1 from tb_user </span></span><br><span class="line"><span class="string">	   where username='%s' and userpass = '%s'"</span> % (uid, pwd)</span><br></pre></td></tr></table></figure>
-<p>​    ⑶ 攻击者在用户名字和密码输入框中输入”‘或’1’=’1”之类的内容，例如a’ or ‘1’=’1。</p>
-<p>​    ⑷ 用户输入的内容提交给服务器之后，服务器运行上面的代码构造出查询用户的SQL命令，但由于攻击者输入的内容非常特殊，所以最后得到的SQL命令变成(假设知道用户名为admin)：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"select 1 from tb_user </span></span><br><span class="line"><span class="string">where username='admin' and userpass = ''  or  '1'='1'"</span></span><br></pre></td></tr></table></figure>
-<p>​    ⑸ 服务器执行查询或存储过程，将用户输入的身份信息和服务器中保存的身份信息进行对比。</p>
-<p>​    ⑹ 由于SQL命令实际上已被注入式攻击修改，已经不能真正验证用户身份，所以系统会错误地授权给攻击者。</p>
-<p>如果攻击者知道应用会将表单中输入的内容直接用于验证身份的查询，他就会尝试输入某些特殊的SQL字符串篡改查询改变其原来的功能，欺骗系统授予访问权限。</p>
-<p>  模拟登录代码: </p>
-<p>SQL语句:</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> tb_user(</span><br><span class="line">username <span class="built_in">varchar</span>(<span class="number">20</span>) <span class="keyword">not</span> <span class="literal">null</span>,</span><br><span class="line">userpass <span class="built_in">varchar</span>(<span class="number">20</span>) <span class="keyword">not</span> <span class="literal">null</span>,</span><br><span class="line">primary <span class="keyword">key</span> (username)</span><br><span class="line">);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tb_user <span class="keyword">values</span> (<span class="string">'admin'</span>, <span class="string">'123456'</span>);</span><br></pre></td></tr></table></figure>
-<p>python3</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pymysql</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 打开数据库连接</span></span><br><span class="line">    connect = pymysql.Connect(host=<span class="string">'localhost'</span>,  port=<span class="number">3306</span>,  user=<span class="string">'root'</span>,</span><br><span class="line">                              passwd=<span class="string">'root'</span>,db=<span class="string">'HRS'</span>,charset=<span class="string">'utf8'</span>)</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        uid = input(<span class="string">'请输入用户名: '</span>)</span><br><span class="line">        pwd = input(<span class="string">'请输入密码: '</span>)</span><br><span class="line">        <span class="comment"># 如果使用字符串格式化的方式来组装sql语句</span></span><br><span class="line">        <span class="comment"># 这种情况有被sql注射攻击的风险</span></span><br><span class="line">        <span class="comment"># 注射攻击的万能密码: a' or '1'='1</span></span><br><span class="line">        <span class="keyword">with</span> connect.cursor() <span class="keyword">as</span> cursor:</span><br><span class="line">            sql = <span class="string">"select 1 from tb_user where username='%s' \</span></span><br><span class="line"><span class="string">                   and userpass = '%s'"</span> % (uid, pwd)</span><br><span class="line">            <span class="comment"># execute() 返回值为受影响的行数</span></span><br><span class="line">            <span class="keyword">if</span> cursor.execute(sql)&gt;<span class="number">0</span>:</span><br><span class="line">                print(<span class="string">'登录成功'</span>)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                print(<span class="string">'用户名或密码错误'</span>)</span><br><span class="line">    <span class="keyword">finally</span>:</span><br><span class="line">        connect.close()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-<p>运行结果</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">请输入用户名: admin</span><br><span class="line">请输入密码: a<span class="string">' or '</span><span class="number">1</span><span class="string">'='</span><span class="number">1</span></span><br><span class="line">登录成功</span><br></pre></td></tr></table></figure>
-
-    </div>
-
-    <div class="post-footer">
-        <div>
-            
-                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="https://zoie1996.github.io/" target="_blank">Zoie</a>
-            
-        </div>
-        <div>
-            
-        </div>
-    </div>
-</article>
-
-<div class="article-nav prev-next-wrap clearfix">
-    
-        <a href="/2018/05/19/redis/" class="pre-post btn btn-default" title='Redis安装配置及基本操作'>
-            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
-            <span class="hidden-xs">Redis安装配置及基本操作</span>
-        </a>
-    
-    
-        <a href="/2018/05/15/pycharm_windows_keyboard_shortcuts/" class="next-post btn btn-default" title='Windows下PyCharm的基本快捷键'>
-            <span class="hidden-lg">下一篇</span>
-            <span class="hidden-xs">Windows下PyCharm的基本快捷键</span><i class="fa fa-angle-right fa-fw"></i>
-        </a>
-    
-</div>
-
-
-    <div id="comments">
+            <div class="post-media">
+                <a href="/2018/05/28/mongdb/">
+                    <img class="img-ajax" src="/img/loading.gif"  data-src="/../images/mongodb.jpg"  alt="Python3 -  Mongodb"> 
+                </a>
+            </div>
         
-   <p>评论系统未开启，无法评论！</p>
+        <div class="post-content">
+            <div class="post-head home-post-head">
+                <h1 class="post-title"> 
+                    <a href="/2018/05/28/mongdb/">Python3 -  Mongodb</a>
+                </h1>
+                <div class="post-meta">  &bull;
+                    <time class="post-date" datetime="" title="">
+                        2018年05月27日
+                    </time>
+                </div>
+            </div>
+            <p class="brief">
+                
+                    1. Mongodb的安装1. 相关链接
+官方网站：https://www.mongodb.com
+官方文档：https://docs.mongodb.com
+GitHub：https://gi...
+                
+            </p> 
+        </div>
+    </article>
+ 
 
-    </div>
+
 
 
 
