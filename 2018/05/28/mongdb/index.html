@@ -213,7 +213,10 @@
 <p>如：如果你想创建一个“myTest”的数据库，先运行use myTest命令，之后就做一些操作（如：db.createCollection(‘user’)）,这样就可以创建一个名叫“myTest”的数据库。</p>
 </li>
 </ul>
-<h4 id="数据库常用命令"><a href="#数据库常用命令" class="headerlink" title="数据库常用命令"></a>数据库常用命令</h4><p><strong>1、Help查看命令提示</strong></p>
+<blockquote>
+<p>####数据库常用命令</p>
+</blockquote>
+<p><strong>1、Help查看命令提示</strong></p>
 <p> help<br>    db.help();<br>      db.yourColl.help();<br>      db.youColl.find().help();<br>      rs.help();</p>
 <p><strong>2、切换/创建数据库</strong></p>
 <p> use yourDB;  当创建一个集合(table)的时候会自动创建当前数据库</p>
@@ -236,7 +239,9 @@
 <p> db.version();</p>
 <p><strong>11、查看当前db的链接机器地址</strong></p>
 <p> db.getMongo();</p>
+<blockquote>
 <p>####Collection聚集集合</p>
+</blockquote>
 <p><strong>1、创建一个聚集集合（table）</strong></p>
 <p> db.createCollection(“collName”, {size: 20, capped: 5, max: 100});</p>
 <p><strong>2、得到指定名称的聚集集合（table）</strong></p>
@@ -245,7 +250,9 @@
 <p> db.getCollectionNames();</p>
 <p><strong>4、显示当前db所有聚集索引的状态</strong></p>
 <p> db.printCollectionStats();</p>
-<p> ####用户相关</p>
+<blockquote>
+<p>####用户相关</p>
+</blockquote>
 <p><strong>1、添加一个用户</strong></p>
 <p> db.addUser(“name”);</p>
 <p> db.addUser(“userName”, “pwd123”, true); 添加用户、设置密码、是否只读</p>
@@ -255,12 +262,16 @@
 <p> show users;</p>
 <p><strong>4、删除用户</strong></p>
 <p> db.removeUser(“userName”);</p>
+<blockquote>
 <p>####其他</p>
+</blockquote>
 <p><strong>1、查询之前的错误信息</strong></p>
 <p> db.getPrevError();</p>
 <p><strong>2、清除错误记录</strong></p>
 <p> db.resetError();</p>
+<blockquote>
 <p>####查看聚集集合基本信息</p>
+</blockquote>
 <p>1、查看帮助  db.yourColl.help();</p>
 <p>2、查询当前集合的数据条数  db.yourColl.count();</p>
 <p>3、查看数据空间大小 db.userInfo.dataSize();</p>
@@ -271,7 +282,9 @@
 <p>8、Shard版本信息  db.userInfo.getShardVersion()</p>
 <p>9、聚集集合重命名 db.userInfo.renameCollection(“users”); 将userInfo重命名为users</p>
 <p>10、删除当前聚集集合 db.userInfo.drop();</p>
+<blockquote>
 <p>####聚集集合查询</p>
+</blockquote>
 <p><strong>1、查询所有记录</strong></p>
 <p>db.userInfo.find();</p>
 <p>相当于：select* from userInfo;</p>
@@ -298,8 +311,7 @@
 <p><strong>8、查询age &gt;= 23 并且 age &lt;= 26</strong></p>
 <p>db.userInfo.find({age: {$gte: 23, $lte: 26}});</p>
 <p><strong>9、查询name中包含 mongo的数据</strong></p>
-<p>db.userInfo.find({name: /mongo/});</p>
-<p>//相当于%%</p>
+<p>db.userInfo.find({name: /mongo/}); //相当于%%</p>
 <p>select * from userInfo where name like ‘%mongo%’;</p>
 <p><strong>10、查询name中以mongo开头的</strong></p>
 <p>db.userInfo.find({name: /^mongo/});</p>
@@ -339,7 +351,9 @@
 <p><strong>21、按照某列进行排序</strong></p>
 <p>db.userInfo.find({sex: {$exists: true}}).count();</p>
 <p>相当于：select count(sex) from userInfo;</p>
+<blockquote>
 <p>####索引</p>
+</blockquote>
 <p><strong>1、创建索引</strong></p>
 <p>db.userInfo.ensureIndex({name: 1});</p>
 <p>db.userInfo.ensureIndex({name: 1, ts: -1});</p>
@@ -353,7 +367,9 @@
 <p>db.users.dropIndex(“name_1”);</p>
 <p><strong>6、删除所有索引索引</strong></p>
 <p>db.users.dropIndexes();</p>
+<blockquote>
 <p>####修改、添加、删除集合数据</p>
+</blockquote>
 <p><strong>1、添加</strong></p>
 <p>db.users.save({name: ‘zhangsan’, age: 25, sex: true});</p>
 <p>添加的数据的数据列，没有固定，根据添加的数据为准</p>
@@ -416,7 +432,9 @@
 </tr>
 </tbody>
 </table>
+<blockquote>
 <p>####语句块操作</p>
+</blockquote>
 <p><strong>1、简单Hello World</strong><br>print(“Hello World!”);</p>
 <p>这种写法调用了print函数，和直接写入”Hello World!”的效果是一样的；</p>
 <p><strong>2、将一个对象转换成json</strong></p>
@@ -575,7 +593,7 @@
         
     <div class="widget">
         <h3 class="title">分类</h3>
-        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Django/"><i class="fa" aria-hidden="true">Django</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/"><i class="fa" aria-hidden="true">Linux</i></a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link current" href="/categories/Python3/"><i class="fa" aria-hidden="true">Python3</i></a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python3基础/"><i class="fa" aria-hidden="true">Python3基础</i></a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/"><i class="fa" aria-hidden="true">数据库</i></a><span class="category-list-count">3</span></li></ul>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Django/"><i class="fa" aria-hidden="true">Django</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/"><i class="fa" aria-hidden="true">Linux</i></a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python3/"><i class="fa" aria-hidden="true">Python3</i></a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python3基础/"><i class="fa" aria-hidden="true">Python3基础</i></a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link current" href="/categories/数据库/"><i class="fa" aria-hidden="true">数据库</i></a><span class="category-list-count">3</span></li></ul>
     </div>
 
 
