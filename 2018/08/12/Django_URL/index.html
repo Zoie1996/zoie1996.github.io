@@ -170,7 +170,10 @@
     <div class="post-body post-content">
         <h2 id="URL管理"><a href="#URL管理" class="headerlink" title="URL管理"></a>URL管理</h2><p>1、创建好Project后在全局配置文件中有一个urls.py这个模块，该模块主要管理本项目的全局url配置</p>
 <p>2、每个APP也应该创建一个urls.py模块来管理自己APP下的url集（可选）</p>
-
+<h3 id="全局urls-py配置"><a href="#全局urls-py配置" class="headerlink" title="全局urls.py配置"></a>全局urls.py配置</h3><p>主要注意的是</p>
+<p>1、需要import  include模块</p>
+<p>2、在urlpatterns中添加app下的urls模块, namespace 参数可以防止不同app下的 url name</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.conf.urls <span class="keyword">import</span> url, include</span><br><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    url(<span class="string">r'^admin/'</span>, admin.site.urls),</span><br><span class="line">    url(<span class="string">r'^blog/'</span>, include(<span class="string">'blog.urls'</span>, namespace=<span class="string">"blog"</span>)),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
     </div>
 
     <div class="post-footer">
