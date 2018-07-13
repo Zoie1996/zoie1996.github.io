@@ -174,6 +174,15 @@
 <p>1、需要import  include模块</p>
 <p>2、在urlpatterns中添加app下的urls模块, namespace 参数可以防止不同app下的 url name</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.conf.urls <span class="keyword">import</span> url, include</span><br><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    url(<span class="string">r'^admin/'</span>, admin.site.urls),</span><br><span class="line">    url(<span class="string">r'^blog/'</span>, include(<span class="string">'blog.urls'</span>, namespace=<span class="string">"blog"</span>)),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<h3 id="APP下的urls-py"><a href="#APP下的urls-py" class="headerlink" title="APP下的urls.py"></a>APP下的urls.py</h3><p>1、import django中url模块</p>
+<p>2、import app中的views模块</p>
+<p>3、需要注意的是url是以正则表达式来配置管理，访问web页面的url = 全局url+APP url</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.conf.urls <span class="keyword">import</span> url</span><br><span class="line"><span class="keyword">from</span> app <span class="keyword">import</span> views</span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    url(<span class="string">r'^index/$'</span>, views.index, name=<span class="string">"index"</span>),</span><br><span class="line">]</span><br><span class="line"><span class="comment"># 访问index页面url=http://localhost:8000/blog/index/</span></span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h2 id="URL-py中的正则表达式"><a href="#URL-py中的正则表达式" class="headerlink" title="URL.py中的正则表达式"></a>URL.py中的正则表达式</h2><p><strong>这里需要注意的是：</strong></p>
+<p><strong>1、如果正则里面有（）括号表示为分组，会自动将（）括号里面的内容传到views.article_page视图中。</strong></p>
+<p><strong>2、如果正则格式为：(?P&lt;&gt;) 表示为命名分组，在View视图里面或者template调用的时候，可以直接使用命名去调用</strong></p>
+
     </div>
 
     <div class="post-footer">
@@ -288,7 +297,7 @@
         
     <div class="widget">
         <h3 class="title">分类</h3>
-        <ul class="category-list"><li class="category-list-item"><a class="category-list-link current" href="/categories/Django/"><i class="fa" aria-hidden="true">Django</i></a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/"><i class="fa" aria-hidden="true">Linux</i></a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python3/"><i class="fa" aria-hidden="true">Python3</i></a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python3基础/"><i class="fa" aria-hidden="true">Python3基础</i></a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/"><i class="fa" aria-hidden="true">数据库</i></a><span class="category-list-count">4</span></li></ul>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Django/"><i class="fa" aria-hidden="true">Django</i></a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/"><i class="fa" aria-hidden="true">Linux</i></a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python3/"><i class="fa" aria-hidden="true">Python3</i></a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python3基础/"><i class="fa" aria-hidden="true">Python3基础</i></a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link current" href="/categories/数据库/"><i class="fa" aria-hidden="true">数据库</i></a><span class="category-list-count">4</span></li></ul>
     </div>
 
 
