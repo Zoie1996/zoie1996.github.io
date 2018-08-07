@@ -29,7 +29,7 @@
     <!--Title-->
 
 
-<title>Python3 - Django rest_framework实现c API | Zoie</title>
+<title>归档：2017/8 | Zoie</title>
 
 
     <link rel="alternate" href="/atom.xml" title="Zoie" type="application/atom+xml">
@@ -120,103 +120,21 @@
     <section class="content-wrap">
         <div class="container">
             <div class="row">
-                <main class="col-md-8 main-content m-post">
-                    <p id="process"></p>
-<article class="post">
-    <div class="post-head">
-        <h1 id="Python3 - Django rest_framework实现c API">
-            
-	            Python3 - Django rest_framework实现c API
-            
-        </h1>
-        <div class="post-meta">
-    
-    
-    <span class="categories-meta fa-wrap">
-        <i class="fa fa-folder-open-o"></i>
-        <a href="/categories/Python3">
-            Python3
-        </a>
-    </span>
-    
-    
-    <span class="fa-wrap">
-        <i class="fa fa-tags"></i>
-        <span class="tags-meta">
-            
-                
-                    <a href="/tags/restful" title='restful'>
-                        restful
-                    </a>
-                
-            
-        </span>
-    </span>
-    
-
-    
+                <main class="col-md-8 main-content ">
+                    <div id="main">
+  <div id="post-list">
+    <ul class="archives-post-list">
+    	<h1 class="info">2017年 8月</h1>
         
-        <span class="fa-wrap">
-            <i class="fa fa-clock-o"></i>
-            <span class="date-meta">2017/06/14</span>
-        </span>
-    
-</div>
-
-            
-            
-    </div>
-    
-    <div class="post-body post-content">
-        <p><strong>一、什么是REST</strong></p>
-<p>面向资源是REST最明显的特征，资源是一种看待服务器的方式，将服务器看作是由很多离散的资源组成。每个资源是服务器上一个可命名的抽象概念。因为资源是一个抽象的概念，所以它不仅仅能代表服务器文件系统中的一个文件、数据库中的一张表等等具体的东西，可以将资源设计的要多抽象有多抽象，只要想象力允许而且客户端应用开发者能够理解。</p>
-<p>与面向对象设计类似，资源是以名词为核心来组织的，首先关注的是名词。一个资源可以由一个或多个URI来标识。URI既是资源的名称，也是资源在Web上的地址。对某个资源感兴趣的客户端应用，可以通过资源的URI与其进行交互。对于同一个资源的一组不同的操作。资源是服务器上一个可命名的抽象概念，资源是以名词为核心来组织的，首先关注的是名词。</p>
-<p>REST要求，必须通过统一的接口来对资源执行各种操作。对于每个资源只能执行一组有限的操作。（7个HTTP方法：GET/POST/PUT/DELETE/PATCH/HEAD/OPTIONS）</p>
-<p><strong>二、什么是RESTful</strong></p>
-<p>API符合REST架构设计的API。</p>
-<p>概念不多说了，具体通过下面的一个简单例子看看Django框架是怎么实现RESTful。</p>
-<p><strong>三、rest_framework模块</strong></p>
-<ol>
-<li><p>使用pip命令下载：pip3 install djangorestframework</p>
-</li>
-<li><p>创建项目: 之前的博客已经详细介绍了创建django项目的方法，这里不再多说。</p>
-</li>
-<li><p>打开settings.py，增加一段配置：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">INSTALLED_APPS = [</span><br><span class="line">  <span class="string">'django.contrib.admin'</span>,</span><br><span class="line">  <span class="string">'django.contrib.auth'</span>,</span><br><span class="line">  <span class="string">'django.contrib.contenttypes'</span>,</span><br><span class="line">  <span class="string">'django.contrib.sessions'</span>,</span><br><span class="line">  <span class="string">'django.contrib.messages'</span>,</span><br><span class="line">  <span class="string">'django.contrib.staticfiles'</span>,</span><br><span class="line">  <span class="string">'apitest'</span>,              <span class="comment"># 添加apitest app</span></span><br><span class="line">  <span class="string">'rest_framework'</span>,          <span class="comment"># 添加rest_framework</span></span><br><span class="line">]</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="comment">#增加一段REST_FRAMEWORK配置</span></span><br><span class="line">REST_FRAMEWORK = &#123;</span><br><span class="line">  <span class="string">'DEFAULT_PERMISSION_CLASSES'</span>: [</span><br><span class="line">    <span class="string">'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="string">'DEFAULT_RENDERER_CLASSES'</span>: (</span><br><span class="line">    <span class="string">'rest_framework.renderers.JSONRenderer'</span>,</span><br><span class="line">  ),</span><br><span class="line">  <span class="string">'DEFAULT_PARSER_CLASSES'</span>: (</span><br><span class="line">    <span class="string">'rest_framework.parsers.JSONParser'</span>,</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><a href="https://www.jb51.net/article/140724.htm" target="_blank" rel="noopener">https://www.jb51.net/article/140724.htm</a></p>
-</li>
-</ol>
-
-    </div>
-
-    <div class="post-footer">
-        <div>
-            
-                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="https://zoie1996.github.io/" target="_blank">Zoie</a>
-            
-        </div>
-        <div>
-            
-        </div>
-    </div>
-</article>
-
-<div class="article-nav prev-next-wrap clearfix">
-    
-        <a href="/2017/10/15/unittest/" class="pre-post btn btn-default" title='Python3 - 单元测试'>
-            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
-            <span class="hidden-xs">Python3 - 单元测试</span>
-        </a>
-    
-    
-</div>
-
-
-    <div id="comments">
+          <li class="post-items" _href="/2017/08/11/rest_formwork/">
+            <h3 class="post-item-title">
+            	<a href="/2017/08/11/rest_formwork/"> Python3 - Django rest_framework实现 API </a>
+            </h3>  
+          </li>
         
-   <p>评论系统未开启，无法评论！</p>
-
-    </div>
+    </ul>
+  </div>
+</div>
 
 
 
@@ -301,7 +219,7 @@
         
     <div class="widget">
         <h3 class="title">分类</h3>
-        <ul class="category-list"><li class="category-list-item"><a class="category-list-link current" href="/categories/Django/"><i class="fa" aria-hidden="true">Django</i></a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/"><i class="fa" aria-hidden="true">Linux</i></a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python3/"><i class="fa" aria-hidden="true">Python3</i></a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python3基础/"><i class="fa" aria-hidden="true">Python3基础</i></a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/"><i class="fa" aria-hidden="true">数据库</i></a><span class="category-list-count">4</span></li></ul>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Django/"><i class="fa" aria-hidden="true">Django</i></a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/"><i class="fa" aria-hidden="true">Linux</i></a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link current" href="/categories/Python3/"><i class="fa" aria-hidden="true">Python3</i></a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python3基础/"><i class="fa" aria-hidden="true">Python3基础</i></a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/"><i class="fa" aria-hidden="true">数据库</i></a><span class="category-list-count">4</span></li></ul>
     </div>
 
 
@@ -309,7 +227,7 @@
         
     <div class="widget">
       <h3 class="title">归档</h3>
-        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/"><i class="fa" aria-hidden="true">十月 2018</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/"><i class="fa" aria-hidden="true">八月 2018</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/"><i class="fa" aria-hidden="true">七月 2018</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/"><i class="fa" aria-hidden="true">六月 2018</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/"><i class="fa" aria-hidden="true">五月 2018</i></a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/"><i class="fa" aria-hidden="true">十月 2017</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/"><i class="fa" aria-hidden="true">六月 2017</i></a><span class="archive-list-count">1</span></li></ul>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/"><i class="fa" aria-hidden="true">十月 2018</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/"><i class="fa" aria-hidden="true">八月 2018</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/"><i class="fa" aria-hidden="true">七月 2018</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/"><i class="fa" aria-hidden="true">六月 2018</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/"><i class="fa" aria-hidden="true">五月 2018</i></a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/"><i class="fa" aria-hidden="true">十月 2017</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/"><i class="fa" aria-hidden="true">八月 2017</i></a><span class="archive-list-count">1</span></li></ul>
     </div>
 
 

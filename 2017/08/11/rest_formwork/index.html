@@ -1,0 +1,402 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="Zoie">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://zoie1996..github.io">
+    <!--SEO-->
+
+
+
+<meta name="keywords" content="IT,技术,博客,Python"/>
+
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+
+<title>Python3 - Django rest_framework实现 API | Zoie</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="Zoie" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css?rev=3.3.4">
+<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+</head>
+
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header"  style="background-image:url(http://7xpw2b.com1.z0.glb.clouddn.com/hexo-sinppet/img/banner2.jpg)"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='zoie'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                 <img src="/img/branding.png" alt="Snippet 博客主题" class="img-responsive center-block">
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa /favicon.ico"></i>首页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/技术杂谈/"><i class="fa /favicon.ico"></i>技术杂谈</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/生活随笔/"><i class="fa /favicon.ico"></i>生活随笔</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Python3 - Django rest_framework实现 API">
+            
+	            Python3 - Django rest_framework实现 API
+            
+        </h1>
+        <div class="post-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a href="/categories/Python3">
+            Python3
+        </a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+                
+                    <a href="/tags/restful" title='restful'>
+                        restful
+                    </a>
+                
+            
+        </span>
+    </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2017/08/10</span>
+        </span>
+    
+</div>
+
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <p><strong>一、什么是REST</strong></p>
+<p>面向资源是REST最明显的特征，资源是一种看待服务器的方式，将服务器看作是由很多离散的资源组成。每个资源是服务器上一个可命名的抽象概念。因为资源是一个抽象的概念，所以它不仅仅能代表服务器文件系统中的一个文件、数据库中的一张表等等具体的东西，可以将资源设计的要多抽象有多抽象，只要想象力允许而且客户端应用开发者能够理解。</p>
+<p>与面向对象设计类似，资源是以名词为核心来组织的，首先关注的是名词。一个资源可以由一个或多个URI来标识。URI既是资源的名称，也是资源在Web上的地址。对某个资源感兴趣的客户端应用，可以通过资源的URI与其进行交互。对于同一个资源的一组不同的操作。资源是服务器上一个可命名的抽象概念，资源是以名词为核心来组织的，首先关注的是名词。</p>
+<p>REST要求，必须通过统一的接口来对资源执行各种操作。对于每个资源只能执行一组有限的操作。（7个HTTP方法：GET/POST/PUT/DELETE/PATCH/HEAD/OPTIONS）</p>
+<p><strong>二、什么是RESTful</strong></p>
+<p>API符合REST架构设计的API。</p>
+<p>概念不多说了，具体通过下面的一个简单例子看看Django框架是怎么实现RESTful。</p>
+<p><strong>三、rest_framework模块</strong></p>
+<ol>
+<li><p>使用pip命令下载：pip3 install djangorestframework</p>
+</li>
+<li><p>创建项目: 之前的博客已经详细介绍了创建django项目的方法，这里不再多说。</p>
+</li>
+<li><p>打开settings.py，增加一段配置：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">INSTALLED_APPS = [</span><br><span class="line">  <span class="string">'django.contrib.admin'</span>,</span><br><span class="line">  <span class="string">'django.contrib.auth'</span>,</span><br><span class="line">  <span class="string">'django.contrib.contenttypes'</span>,</span><br><span class="line">  <span class="string">'django.contrib.sessions'</span>,</span><br><span class="line">  <span class="string">'django.contrib.messages'</span>,</span><br><span class="line">  <span class="string">'django.contrib.staticfiles'</span>,</span><br><span class="line">  <span class="string">'apitest'</span>,              <span class="comment"># 添加apitest app</span></span><br><span class="line">  <span class="string">'rest_framework'</span>,          <span class="comment"># 添加rest_framework</span></span><br><span class="line">]</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="comment">#增加一段REST_FRAMEWORK配置</span></span><br><span class="line">REST_FRAMEWORK = &#123;</span><br><span class="line">    <span class="string">'DEFAULT_PAGINATION_CLASS'</span>: <span class="string">'rest_framework.pagination.PageNumberPagination'</span>,</span><br><span class="line">    <span class="comment"># 'DEFAULT_PAGINATION_CLASS': 'utils.pagination.LinkHeaderPagination',</span></span><br><span class="line">    <span class="comment"># 分页条数</span></span><br><span class="line">    <span class="string">'PAGE_SIZE'</span>: <span class="number">3</span>,</span><br><span class="line">    <span class="comment"># 权限</span></span><br><span class="line">    <span class="string">'DEFAULT_AUTHENTICATION_CLASSES'</span>: (),</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 重构renderer</span></span><br><span class="line">    <span class="string">'DEFAULT_RENDERER_CLASSES'</span>: (<span class="string">'utils.function.CustomJsonRenderer'</span>,),</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 配置过滤</span></span><br><span class="line">    <span class="string">'DEFAULT_FILTER_BACKENDS'</span>: (</span><br><span class="line">        <span class="string">'rest_framework.filters.DjangoFilterBackend'</span>,</span><br><span class="line">        <span class="string">'rest_framework.filters.SearchFilter'</span>,</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>打开model.py，创建model</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create your models here.</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Grade</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    g_name = models.CharField(max_length=<span class="number">20</span>)</span><br><span class="line">    g_create_time = models.DateTimeField(auto_now_add=<span class="keyword">True</span>)</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        db_table = <span class="string">'grade'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    s_name = models.CharField(max_length=<span class="number">20</span>, null=<span class="keyword">False</span>, unique=<span class="keyword">True</span>)</span><br><span class="line">    s_create_time = models.DateTimeField(auto_now_add=<span class="keyword">True</span>)<span class="comment"># 添加是创建 不可更改</span></span><br><span class="line">    s_operate_time = models.DateTimeField(auto_now=<span class="keyword">True</span>)</span><br><span class="line">    s_img = models.ImageField(upload_to=<span class="string">'upload'</span>, null=<span class="keyword">True</span>)</span><br><span class="line">    g = models.ForeignKey(Grade)</span><br><span class="line">    s_python = models.IntegerField(null=<span class="keyword">True</span>)</span><br><span class="line">    s_html = models.IntegerField(null=<span class="keyword">True</span>)</span><br><span class="line">    delete = models.BooleanField(default=<span class="keyword">False</span>)</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        db_table = <span class="string">'student'</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__unicode__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">'%s: %s'</span> % (self.s_name, self.s_python)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol start="5">
+<li><p>app/urls.py 配置API路由</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> rest_framework.routers <span class="keyword">import</span> SimpleRouter</span><br><span class="line"><span class="comment"># 自定义router路由</span></span><br><span class="line">router = SimpleRouter()</span><br><span class="line"></span><br><span class="line">router.register(<span class="string">r'^api/student'</span>, api_views.api_student)</span><br><span class="line">router.register(<span class="string">r'^api/grade'</span>, api_views.api_grade)</span><br><span class="line"></span><br><span class="line">urlpatterns += router.urls</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建serializer.py文件</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> OrderedDict</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> rest_framework <span class="keyword">import</span> serializers, response</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> app.models <span class="keyword">import</span> Student, Grade</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StudentSerializer</span><span class="params">(serializers.ModelSerializer)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 自定义错误信息</span></span><br><span class="line">    s_name = serializers.CharField(max_length=<span class="number">20</span>,error_messages=&#123;</span><br><span class="line">        <span class="string">'blank'</span>: <span class="string">'姓名不能为空'</span>,</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        <span class="comment"># 指定model</span></span><br><span class="line">        model = Student</span><br><span class="line">        <span class="comment"># 需要展示的字段</span></span><br><span class="line">        fields = [<span class="string">'id'</span>,<span class="string">'s_name'</span>, <span class="string">'s_html'</span>,<span class="string">'s_python'</span>,<span class="string">'s_img'</span> ,<span class="string">'g'</span>]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 重写方法显示班级名称信息</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">to_representation</span><span class="params">(self, instance)</span>:</span></span><br><span class="line">        <span class="comment"># 循环序列化出学生对象</span></span><br><span class="line">        data = super().to_representation(instance)</span><br><span class="line">        <span class="comment"># 给学生对象添加一个班级名称字段</span></span><br><span class="line">        data[<span class="string">'g_name'</span>] = instance.g.g_name</span><br><span class="line">        <span class="keyword">return</span> data</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GradeSerializer</span><span class="params">(serializers.ModelSerializer)</span>:</span></span><br><span class="line">    <span class="comment"># student_set = StudentSerializer(many=True)</span></span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        model = Grade</span><br><span class="line">        <span class="comment"># fields = ['g_name', 'student_set']</span></span><br><span class="line">        fields = [<span class="string">'id'</span>, <span class="string">'g_name'</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">do_update</span><span class="params">(self, instance, validated_data)</span>:</span></span><br><span class="line">        instance.g_name = validated_data[<span class="string">'g_name'</span>]</span><br><span class="line">        instance.save()</span><br><span class="line"></span><br><span class="line">        data = self.to_representation(instance)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> data</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>视图文件 api_views.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> rest_framework <span class="keyword">import</span> mixins, viewsets</span><br><span class="line"><span class="keyword">from</span> rest_framework.response <span class="keyword">import</span> Response</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> app.filters <span class="keyword">import</span> StudentFilter, GradeFilter</span><br><span class="line"><span class="keyword">from</span> app.models <span class="keyword">import</span> Student, Grade</span><br><span class="line"><span class="keyword">from</span> app.serializer <span class="keyword">import</span> StudentSerializer, GradeSerializer</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">api_student</span><span class="params">(mixins.ListModelMixin,</span></span></span><br><span class="line"><span class="class"><span class="params">                  mixins.CreateModelMixin,</span></span></span><br><span class="line"><span class="class"><span class="params">                  mixins.UpdateModelMixin,</span></span></span><br><span class="line"><span class="class"><span class="params">                  mixins.RetrieveModelMixin,</span></span></span><br><span class="line"><span class="class"><span class="params">                  mixins.DestroyModelMixin,</span></span></span><br><span class="line"><span class="class"><span class="params">                  viewsets.GenericViewSet)</span>:</span></span><br><span class="line">    <span class="comment"># 查询学生的所有信息</span></span><br><span class="line">    queryset = Student.objects.filter(delete=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 序列化学生的所有信息</span></span><br><span class="line">    serializer_class = StudentSerializer</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 过滤</span></span><br><span class="line">    filter_class = StudentFilter</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 子类重构父类函数, 实现过滤</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_queryset</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.queryset.order_by(<span class="string">'id'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 软删除 更改数据库数据, 不显示在前端</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">perform_destroy</span><span class="params">(self, instance)</span>:</span></span><br><span class="line">        instance.delete = <span class="keyword">True</span></span><br><span class="line">        instance.save()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">api_grade</span><span class="params">(mixins.ListModelMixin,</span></span></span><br><span class="line"><span class="class"><span class="params">                mixins.UpdateModelMixin,</span></span></span><br><span class="line"><span class="class"><span class="params">                mixins.CreateModelMixin,</span></span></span><br><span class="line"><span class="class"><span class="params">                mixins.RetrieveModelMixin,</span></span></span><br><span class="line"><span class="class"><span class="params">                viewsets.GenericViewSet)</span>:</span></span><br><span class="line">	<span class="comment"># 查询课程所有信息</span></span><br><span class="line">    queryset = Grade.objects.all()</span><br><span class="line">	<span class="comment"># 序列化所有课程信息</span></span><br><span class="line">    serializer_class = GradeSerializer</span><br><span class="line">	<span class="comment"># 过滤</span></span><br><span class="line">    filter_class = GradeFilter</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">update</span><span class="params">(self, request, *args, **kwargs)</span>:</span></span><br><span class="line">        <span class="comment"># 获取当前对象</span></span><br><span class="line">        instance = self.get_object()</span><br><span class="line">        <span class="comment"># 序列化对象, 调用重写的方法</span></span><br><span class="line">        serializer = self.serializer_class(instance, request.data)</span><br><span class="line">        serializer.is_valid(raise_exception=<span class="keyword">True</span>)</span><br><span class="line">        <span class="comment"># 调用重写的 do_update方法 保存数据</span></span><br><span class="line">        serializer.do_update(instance, request.data)</span><br><span class="line">        data = serializer.data</span><br><span class="line">        data[<span class="string">'code'</span>] = <span class="number">200</span></span><br><span class="line">        data[<span class="string">'msg'</span>] = <span class="string">'请求成功'</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> Response(data)</span><br></pre></td></tr></table></figure>
+<p>api/student/返回结果：</p>
+</li>
+</ol>
+   <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	code: 0,</span><br><span class="line">	msg: "请求成功",</span><br><span class="line">	data: &#123;</span><br><span class="line">		count: 8,</span><br><span class="line">		next: "http://127.0.0.1:8000/app/api/student/?page=2",</span><br><span class="line">		previous: null,</span><br><span class="line">		results: [&#123;</span><br><span class="line">				id: 3,</span><br><span class="line">				s_name: "小飞刀",</span><br><span class="line">				s_html: 85,</span><br><span class="line">				s_python: 71,</span><br><span class="line">				s_img: null,</span><br><span class="line">				g: 1,</span><br><span class="line">				g_name: "python2"</span><br><span class="line">			&#125;,</span><br><span class="line">			&#123;</span><br><span class="line">				id: 4,</span><br><span class="line">				s_name: "小小飞刀",</span><br><span class="line">				s_html: 82,</span><br><span class="line">				s_python: 90,</span><br><span class="line">				s_img: null,</span><br><span class="line">				g: 1,</span><br><span class="line">				g_name: "python2"</span><br><span class="line">			&#125;,</span><br><span class="line">			&#123;</span><br><span class="line">				id: 5,</span><br><span class="line">				s_name: "小王",</span><br><span class="line">				s_html: 78,</span><br><span class="line">				s_python: 100,</span><br><span class="line">				s_img: null,</span><br><span class="line">				g: 1,</span><br><span class="line">				g_name: "python2"</span><br><span class="line">			&#125;</span><br><span class="line">		]</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="https://zoie1996.github.io/" target="_blank">Zoie</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2017/10/15/unittest/" class="pre-post btn btn-default" title='Python3 - 单元测试'>
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">Python3 - 单元测试</span>
+        </a>
+    
+    
+</div>
+
+
+    <div id="comments">
+        
+   <p>评论系统未开启，无法评论！</p>
+
+    </div>
+
+
+
+
+
+                </main>
+                
+    <aside class="col-md-4 sidebar">
+        
+        
+    <div class="widget">    
+        <h3 class="title">搜索</h3>
+        <div id="search-form">
+            <div id="result-mask" class="hide"></div>
+            <div class="search-area">
+                
+                    <input id="search-key" type="search" autocomplete="off" placeholder="搜点什么呢?">
+                    <button type="button" class="search-form-submit" id="search-local">站内搜索</button>
+                
+                
+            </div>
+            <div id="result-wrap" class="hide">
+                <div id="search-result"></div>
+            </div>
+            <div class="hide">
+                <template id="search-tpl">
+                    <div class="item">
+                        <a href="/{path}" title="{title}">
+                            <div class="title">{title}</div>
+                            <div class="content">{content}</div>
+                        </a>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </div>
+
+        
+        
+    <div class="widget notification">
+        <h3 class="title">网站公告</h3>
+        <div>
+            <!-- <p>主题Snippet v1.2.0版本已经上线！欢迎更新~ <br/>
+主题下载：<a href="https://github.com/shenliyang/hexo-theme-snippet" title="fork me" target="_blank">Snippet主题</a> <br/>
+<hr/>接受贡献，包括不限于提交问题与需求，修复代码。欢迎Pull Request<br/>支持主题：<a href="https://github.com/shenliyang/hexo-theme-snippet/stargazers">Star一下</a>
+</p> -->
+暂无
+        </div>
+    </div>
+
+        
+        
+    <div class="widget">
+      <h3 class="title">社交</h3> 
+        <div class="content social">
+            
+	            <a href="//github.com/Zoie1996" rel="external nofollow" title="Github" target="_blank">
+			    	<i class="git fa fa-git"></i>
+			    </a>
+            
+	            <a href="mailto:zoie1996@163.com" rel="external nofollow" title="邮箱" target="_blank">
+			    	<i class="envelope-o fa fa-envelope-o"></i>
+			    </a>
+            
+	            <a href="/" rel="external nofollow" title="联系QQ" target="_blank">
+			    	<i class="qq fa fa-qq"></i>
+			    </a>
+            
+	            <a href="/" rel="external nofollow" title="微博" target="_blank">
+			    	<i class="weibo fa fa-weibo"></i>
+			    </a>
+            
+	            <a href="/" rel="external nofollow" title="QQ群" target="_blank">
+			    	<i class="users fa fa-users"></i>
+			    </a>
+            
+        </div>
+    </div>
+
+
+        
+        
+    <div class="widget">
+        <h3 class="title">分类</h3>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Django/"><i class="fa" aria-hidden="true">Django</i></a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/"><i class="fa" aria-hidden="true">Linux</i></a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link current" href="/categories/Python3/"><i class="fa" aria-hidden="true">Python3</i></a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python3基础/"><i class="fa" aria-hidden="true">Python3基础</i></a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/"><i class="fa" aria-hidden="true">数据库</i></a><span class="category-list-count">4</span></li></ul>
+    </div>
+
+
+        
+        
+    <div class="widget">
+      <h3 class="title">归档</h3>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/"><i class="fa" aria-hidden="true">十月 2018</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/"><i class="fa" aria-hidden="true">八月 2018</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/"><i class="fa" aria-hidden="true">七月 2018</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/"><i class="fa" aria-hidden="true">六月 2018</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/"><i class="fa" aria-hidden="true">五月 2018</i></a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/"><i class="fa" aria-hidden="true">十月 2017</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/"><i class="fa" aria-hidden="true">八月 2017</i></a><span class="archive-list-count">1</span></li></ul>
+    </div>
+
+
+        
+        
+  <div class="widget">
+    <h3 class="title">标签云</h3>
+    <div class="content tag-cloud">
+        <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/HTTP状态返回码/" style="font-size: 10px;">HTTP状态返回码</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/Mongodb/" style="font-size: 10px;">Mongodb</a> <a href="/tags/MySQL注入式攻击/" style="font-size: 10px;">MySQL注入式攻击</a> <a href="/tags/PyCharm快捷键/" style="font-size: 20px;">PyCharm快捷键</a> <a href="/tags/Shell/" style="font-size: 10px;">Shell</a> <a href="/tags/django-url/" style="font-size: 10px;">django_url</a> <a href="/tags/firewalld/" style="font-size: 10px;">firewalld</a> <a href="/tags/mongo/" style="font-size: 10px;">mongo</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/restful/" style="font-size: 10px;">restful</a> <a href="/tags/spider/" style="font-size: 10px;">spider</a> <a href="/tags/str函数/" style="font-size: 10px;">str函数</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a> <a href="/tags/分支/" style="font-size: 10px;">分支</a> <a href="/tags/创建项目/" style="font-size: 10px;">创建项目</a> <a href="/tags/单元测试/" style="font-size: 10px;">单元测试</a> <a href="/tags/循环/" style="font-size: 10px;">循环</a> <a href="/tags/打印月历/" style="font-size: 10px;">打印月历</a> <a href="/tags/标签/" style="font-size: 10px;">标签</a> <a href="/tags/自动化测试/" style="font-size: 10px;">自动化测试</a> <a href="/tags/递归/" style="font-size: 10px;">递归</a> <a href="/tags/遍历目录/" style="font-size: 10px;">遍历目录</a>
+    </div>
+  </div>
+
+
+        
+        
+    <div class="widget">
+        <h3 class="title">友链</h3>
+        <div class="content friends-link">
+        
+            <a href="https://gavinliu4011.github.io/" class="fa" target="_blank">GavinLiu</a>
+        
+            <a href="https://my.csdn.net/jackfrued" class="fa" target="_blank">jackfrued</a>
+        
+        </div>
+    </div>
+
+
+        
+    </aside>
+
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12"> 
+                <span>Copyright &copy; 2017
+                </span> | 
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> | 
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+	<script src="/js/search.js?rev=@@hash"></script>
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+
+</body>
+</html>
